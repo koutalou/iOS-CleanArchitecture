@@ -35,6 +35,9 @@ class ICATLoginAccountUseCase: NSObject {
             let registeredAccountsModel = ICATRegisteredAccountTranslater.generateRegisteredAccount(accounts!, selectedIdentifier: twitterAccountIdentifier)
             self.output?.loadTwitterAccounts(registeredAccountsModel)
         }
+        .failure { (error, isCancelled) -> Void in
+            self.output?.loadTwitterAccountsErorr(error ?? ICATError.Generic)
+        }
     }
     
     func selectAccount(account: ICATRegisteredAccountModel) {

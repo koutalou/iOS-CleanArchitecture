@@ -12,6 +12,7 @@ import Accounts
 enum ICATLoginAccountStatus {
     case None
     case Normal
+    case NotAuthorized
     case Error
 }
 
@@ -49,7 +50,11 @@ class ICATLoginAccountPresenter: NSObject, ICATLoginAccountUseCaseOutput {
     
     func loadTwitterAccountsErorr(error: ICATError) {
         dispatch_async(dispatch_get_main_queue()) { [weak self]() -> Void in
-            self?.viewInput?.changedStatus(ICATLoginAccountStatus.Error)
+            if (error == .NotAuthorized) {
+                self?.viewInput?.changedStatus(ICATLoginAccountStatus.NotAuthorized)
+            } else {
+                self?.viewInput?.changedStatus(ICATLoginAccountStatus.Error)
+            }
         }
     }
     

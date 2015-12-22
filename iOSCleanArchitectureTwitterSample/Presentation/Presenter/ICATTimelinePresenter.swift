@@ -41,6 +41,10 @@ class ICATTimelinePresenter: NSObject, ICATTimelineUseCaseOutput {
     }
     
     func loadTimelinesError(error: ICATError) {
-        viewInput?.changedStatus(ICATTimelineStatus.Error)
+        if (error == .NotAuthorized) {
+            viewInput?.changedStatus(ICATTimelineStatus.NotAuthorized)
+        } else {
+            viewInput?.changedStatus(ICATTimelineStatus.Error)
+        }
     }
 }

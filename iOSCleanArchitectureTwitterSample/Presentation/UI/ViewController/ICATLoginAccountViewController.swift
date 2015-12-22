@@ -41,6 +41,8 @@ class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInpu
             footerLabel.text = "Select use account"
         case .Error:
             footerLabel.text = "An error occured"
+        case .NotAuthorized:
+            footerLabel.text = "Not authorized"
         case .None:
             footerLabel.text = "No twitter user"
         }

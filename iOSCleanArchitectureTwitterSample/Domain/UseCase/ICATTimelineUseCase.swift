@@ -44,5 +44,8 @@ class ICATTimelineUseCase: NSObject {
                 self.output?.loadTimelinesError(error ?? ICATError.Generic)
             }
         }
+        .failure { (error, isCancelled) -> Void in
+            self.output?.loadTimelinesError(error ?? ICATError.Generic)
+        }
     }
 }

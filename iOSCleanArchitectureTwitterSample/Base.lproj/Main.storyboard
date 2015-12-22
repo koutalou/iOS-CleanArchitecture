@@ -288,6 +288,11 @@
                                 <action selector="tapCancel:" destination="kNL-PA-2AG" id="6MX-mD-a9e"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="IHo-aP-dLX">
+                            <connections>
+                                <action selector="tapReload:" destination="kNL-PA-2AG" id="ZCH-eE-uXW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="footerLabel" destination="ND0-ea-Beh" id="d3b-Zs-lLA"/>

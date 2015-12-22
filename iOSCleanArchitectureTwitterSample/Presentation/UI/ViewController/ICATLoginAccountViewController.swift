@@ -83,4 +83,10 @@ class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInpu
     @IBAction func tapCancel(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func tapReload(sender: UIBarButtonItem) {
+        // Reload accounts
+        presenter.loadAccounts()
+    }
+    
 }

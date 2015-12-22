@@ -92,9 +92,9 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="displayName" destination="hbe-fM-pWj" id="mcl-2a-lor"/>
                                             <outlet property="name" destination="7eT-zP-ewR" id="xUc-Bh-0IO"/>
                                             <outlet property="profileImageView" destination="UXv-Yj-XCn" id="6do-zC-gyp"/>
-                                            <outlet property="screenName" destination="hbe-fM-pWj" id="pJJ-ap-Axc"/>
                                             <outlet property="tweet" destination="qFa-AC-xaV" id="VE9-mA-iWl"/>
                                         </connections>
                                     </tableViewCell>

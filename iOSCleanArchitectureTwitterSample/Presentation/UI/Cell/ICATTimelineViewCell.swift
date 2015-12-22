@@ -12,14 +12,14 @@ import SDWebImage
 class ICATTimelineViewCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var screenName: UILabel!
+    @IBOutlet weak var displayName: UILabel!
     
     @IBOutlet weak var tweet: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 
     func updateCell(timelineModel: ICATTimelineModel) {
-        self.name.text = "@" + timelineModel.name
-        self.screenName.text = timelineModel.screenName
+        self.name.text = "@" + timelineModel.screenName
+        self.displayName.text = timelineModel.name
         self.tweet.text = timelineModel.tweet
         self.profileImageView.sd_setImageWithURL(NSURL(string: timelineModel.profileUrl))
     }

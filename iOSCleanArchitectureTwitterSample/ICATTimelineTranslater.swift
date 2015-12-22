@@ -10,7 +10,7 @@ import Foundation
 
 class ICATTimelineTranslater: NSObject {
     
-    class func generateTimelines(rowTimelines: Array<ICATRowTimelineModel>) -> ICATTimelinesModel {
+    class func generateTimelines(rowTimelines: Array<ICATTimelineEntity>) -> ICATTimelinesModel {
         let timelinesModel: ICATTimelinesModel = ICATTimelinesModel()
         rowTimelines.forEach { rowTimeline -> () in
             let timelineModel = ICATTimelineModel(rowTimelineModel: rowTimeline)

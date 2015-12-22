@@ -18,7 +18,7 @@ class ICATTimelineModel: NSObject {
     var profileUrl: String = ""
     var tweet: String = ""
     
-    required init(rowTimelineModel: ICATRowTimelineModel) {
+    required init(rowTimelineModel: ICATTimelineEntity) {
         super.init()
         name = rowTimelineModel.user?.name ?? ""
         screenName = rowTimelineModel.user?.screenName ?? ""

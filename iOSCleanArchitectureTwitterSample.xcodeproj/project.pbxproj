@@ -14,7 +14,7 @@
 		0752CE041C28008900C75ACB /* ICATRegisteredAccountTranslater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE031C28008900C75ACB /* ICATRegisteredAccountTranslater.swift */; };
 		0752CE061C281C7900C75ACB /* ICATRestSLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE051C281C7900C75ACB /* ICATRestSLRequest.swift */; };
 		0752CE091C28266D00C75ACB /* ICATTimelineUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE081C28266D00C75ACB /* ICATTimelineUseCase.swift */; };
-		0752CE0B1C28328600C75ACB /* ICATRowTimelineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0A1C28328600C75ACB /* ICATRowTimelineModel.swift */; };
+		0752CE0B1C28328600C75ACB /* ICATTimelineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0A1C28328600C75ACB /* ICATTimelineEntity.swift */; };
 		0752CE0D1C283E0E00C75ACB /* ICATTimelineTranslater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0C1C283E0E00C75ACB /* ICATTimelineTranslater.swift */; };
 		0752CE0F1C283EAB00C75ACB /* ICATTimelineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0E1C283EAB00C75ACB /* ICATTimelineModel.swift */; };
 		0752CE111C28452B00C75ACB /* ICATTimelineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE101C28452B00C75ACB /* ICATTimelineViewCell.swift */; };
@@ -63,7 +63,7 @@
 		0752CE031C28008900C75ACB /* ICATRegisteredAccountTranslater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICATRegisteredAccountTranslater.swift; sourceTree = "<group>"; };
 		0752CE051C281C7900C75ACB /* ICATRestSLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICATRestSLRequest.swift; sourceTree = "<group>"; };
 		0752CE081C28266D00C75ACB /* ICATTimelineUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICATTimelineUseCase.swift; sourceTree = "<group>"; };
-		0752CE0A1C28328600C75ACB /* ICATRowTimelineModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICATRowTimelineModel.swift; sourceTree = "<group>"; };
+		0752CE0A1C28328600C75ACB /* ICATTimelineEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICATTimelineEntity.swift; sourceTree = "<group>"; };
 		0752CE0C1C283E0E00C75ACB /* ICATTimelineTranslater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICATTimelineTranslater.swift; sourceTree = "<group>"; };
 		0752CE0E1C283EAB00C75ACB /* ICATTimelineModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICATTimelineModel.swift; sourceTree = "<group>"; };
 		0752CE101C28452B00C75ACB /* ICATTimelineViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICATTimelineViewCell.swift; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 		0752CDFE1C2794E500C75ACB /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				0752CE0A1C28328600C75ACB /* ICATRowTimelineModel.swift */,
+				0752CE0A1C28328600C75ACB /* ICATTimelineEntity.swift */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -504,7 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0752CE041C28008900C75ACB /* ICATRegisteredAccountTranslater.swift in Sources */,
-				0752CE0B1C28328600C75ACB /* ICATRowTimelineModel.swift in Sources */,
+				0752CE0B1C28328600C75ACB /* ICATTimelineEntity.swift in Sources */,
 				270E3DA01C26DB6900C9A69E /* ICATLoginAccountPresenter.swift in Sources */,
 				270E3DB01C271EB100C9A69E /* ICATRegisteredAccountsModel.swift in Sources */,
 				270E3D911C26DA3D00C9A69E /* ICATTimelineViewController.swift in Sources */,

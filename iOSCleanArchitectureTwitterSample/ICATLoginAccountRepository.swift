@@ -40,7 +40,16 @@ class ICATLoginAccountRepository: NSObject {
         }
     }
     
-    func deleteTwitterAccount() {
-        dataStore.deleteSelectedTwitterAccountId()
+    func deleteTwitterAccount() -> Task<Void, Void, ICATError> {
+        return Task { _,fulfill, reject, configure in
+            self.dataStore.deleteSelectedTwitterAccountId({ (error) -> Void in
+                if (error.isError) {
+                    reject(error)
+                    return
+                }
+                
+                fulfill()
+            })
+        }
     }
 }

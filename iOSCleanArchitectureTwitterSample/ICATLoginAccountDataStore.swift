@@ -23,8 +23,9 @@ class ICATLoginAccountDataStore: NSObject {
         callback(ICATError.NoError)
     }
     
-    func deleteSelectedTwitterAccountId() {
+    func deleteSelectedTwitterAccountId(callback: (ICATError) -> Void) {
         NSUserDefaults.standardUserDefaults().removeObjectForKey(ICAT_LOGIN_USER_ID)
         NSUserDefaults.standardUserDefaults().synchronize()
+        callback(ICATError.NoError)
     }
 }

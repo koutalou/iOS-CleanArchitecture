@@ -12,7 +12,7 @@ import Accounts
 class ICATTimelineDataStore: NSObject {
     let request: ICATRestSLRequest = ICATRestSLRequest()
     
-    func getTimelines(account: ACAccount ,callback: (Array<ICATRowTimelineModel>?, ICATError) -> Void) {
+    func getTimelines(account: ACAccount ,callback: (Array<ICATTimelineEntity>?, ICATError) -> Void) {
         request.getTimeline(account) { (timelines, error) -> Void in
             callback(timelines, ICATError.NoError)
         }

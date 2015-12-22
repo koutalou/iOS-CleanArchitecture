@@ -18,10 +18,10 @@ class ICATRestSLRequest: NSObject {
      * TODO: Need to support pagenation
      * Add @params parameters: NSDictionary
      */
-    func getTimeline(account: ACAccount, callback: (Array<ICATRowTimelineModel>?, ICATError) -> Void) {
+    func getTimeline(account: ACAccount, callback: (Array<ICATTimelineEntity>?, ICATError) -> Void) {
         
         let realm = try! Realm()
-        let preloadRowTimelineModels: Array<ICATRowTimelineModel>? = realm.objects(ICATRowTimelineModel) as? Array<ICATRowTimelineModel>
+        let preloadRowTimelineModels: Array<ICATTimelineEntity>? = realm.objects(ICATTimelineEntity) as? Array<ICATTimelineEntity>
         if (preloadRowTimelineModels != nil && preloadRowTimelineModels!.count > 0) {
             callback(preloadRowTimelineModels, ICATError.NoError)
         }
@@ -41,7 +41,7 @@ class ICATRestSLRequest: NSObject {
             do {
                 let array = try NSJSONSerialization.JSONObjectWithData(responseData!,
                     options: NSJSONReadingOptions.MutableContainers) as! NSArray
-                guard let rowTimelines:[ICATRowTimelineModel] = Mapper<ICATRowTimelineModel>().mapArray(array) else {
+                guard let rowTimelines:[ICATTimelineEntity] = Mapper<ICATTimelineEntity>().mapArray(array) else {
                     // Can not convert
                     callback(nil, ICATError.Generic)
                     return

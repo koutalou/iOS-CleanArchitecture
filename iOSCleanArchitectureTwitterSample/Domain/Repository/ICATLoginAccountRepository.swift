@@ -12,7 +12,6 @@ import Accounts
 
 class ICATLoginAccountRepository: NSObject {
     lazy var dataStore: ICATLoginAccountDataStore = ICATLoginAccountDataStore()
-    static let sharedInstance = ICATLoginAccountRepository()
     
     func getSelectedTwitterAccountTask() -> Task<Void, String?, ICATError> {
         return Task { _,fulfill, reject, configure in

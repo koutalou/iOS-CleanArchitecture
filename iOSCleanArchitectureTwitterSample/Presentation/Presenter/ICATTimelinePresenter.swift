@@ -9,11 +9,11 @@
 import Foundation
 
 enum ICATTimelineStatus {
-    case None
-    case NotAuthorized
-    case Loading
-    case Normal
-    case Error
+    case none
+    case notAuthorized
+    case loading
+    case normal
+    case error
 }
 
 class ICATTimelinePresenter: NSObject, ICATTimelineUseCaseOutput {
@@ -23,28 +23,28 @@ class ICATTimelinePresenter: NSObject, ICATTimelineUseCaseOutput {
     func loadTimelines() {
         usecase.output = self
         usecase.loadTimelines()
-        viewInput?.changedStatus(ICATTimelineStatus.Loading)
+        viewInput?.changedStatus(ICATTimelineStatus.loading)
     }
     
     // MARK: ICATTimelineUseCaseOutput
     
     func notAuthorizedOrNoAccount() {
-        viewInput?.changedStatus(ICATTimelineStatus.NotAuthorized)
+        viewInput?.changedStatus(ICATTimelineStatus.notAuthorized)
     }
     
-    func loadTimelines(timelinesModel: ICATTimelinesModel) {
-        dispatch_async(dispatch_get_main_queue()) { [weak self]() -> Void in
+    func loadTimelines(_ timelinesModel: ICATTimelinesModel) {
+        DispatchQueue.main.async { [weak self]() -> Void in
             self?.viewInput?.setTimelinesModel(timelinesModel)
             let isNoData: Bool = timelinesModel.timelines.count == 0
-            self?.viewInput?.changedStatus(isNoData ? ICATTimelineStatus.None : ICATTimelineStatus.Normal)
+            self?.viewInput?.changedStatus(isNoData ? ICATTimelineStatus.none : ICATTimelineStatus.normal)
         }
     }
     
-    func loadTimelinesError(error: ICATError) {
-        if (error == .NotAuthorized) {
-            viewInput?.changedStatus(ICATTimelineStatus.NotAuthorized)
+    func loadTimelinesError(_ error: ICATError) {
+        if (error == .notAuthorized) {
+            viewInput?.changedStatus(ICATTimelineStatus.notAuthorized)
         } else {
-            viewInput?.changedStatus(ICATTimelineStatus.Error)
+            viewInput?.changedStatus(ICATTimelineStatus.error)
         }
     }
 }

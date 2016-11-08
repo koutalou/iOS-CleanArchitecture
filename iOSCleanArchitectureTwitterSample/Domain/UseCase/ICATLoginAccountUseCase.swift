@@ -11,9 +11,9 @@ import SwiftTask
 import Accounts
 
 protocol ICATLoginAccountUseCaseOutput: class {
-    func loadTwitterAccounts(accountModel: ICATRegisteredAccountsModel)
-    func loadTwitterAccountsErorr(error:ICATError)
-    func resultSelectAccount(isSuccess: Bool)
+    func loadTwitterAccounts(_ accountModel: ICATRegisteredAccountsModel)
+    func loadTwitterAccountsErorr(_ error:ICATError)
+    func resultSelectAccount(_ isSuccess: Bool)
 }
 
 class ICATLoginAccountUseCase: NSObject {
@@ -36,11 +36,11 @@ class ICATLoginAccountUseCase: NSObject {
             self.output?.loadTwitterAccounts(registeredAccountsModel)
         }
         .failure { (error, isCancelled) -> Void in
-            self.output?.loadTwitterAccountsErorr(error ?? ICATError.Generic)
+            self.output?.loadTwitterAccountsErorr(error ?? ICATError.generic)
         }
     }
     
-    func selectAccount(account: ICATRegisteredAccountModel) {
+    func selectAccount(_ account: ICATRegisteredAccountModel) {
         guard let acAccount = acAccounts.filter({ $0.identifier == account.identifier}).first else {
             output?.resultSelectAccount(false)
             return

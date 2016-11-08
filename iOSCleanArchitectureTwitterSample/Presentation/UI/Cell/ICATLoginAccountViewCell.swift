@@ -12,16 +12,16 @@ class ICATLoginAccountViewCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
     
-    func updateCell(accountModel: ICATRegisteredAccountModel) {
+    func updateCell(_ accountModel: ICATRegisteredAccountModel) {
         self.name.text = "@" + accountModel.name
         self.isSelected(accountModel.isSelected)
     }
     
-    func isSelected(isSelected: Bool) {
+    func isSelected(_ isSelected: Bool) {
         if (isSelected) {
             self.backgroundColor = UIColor(red: 198/255.0, green: 227/255.0, blue: 219/255.0, alpha: 1)
         } else {
-            self.backgroundColor = UIColor.whiteColor()
+            self.backgroundColor = UIColor.white
         }
     }
 }

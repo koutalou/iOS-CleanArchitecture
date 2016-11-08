@@ -19,12 +19,12 @@ class ICATTimelineViewController: UIViewController, ICATTimelineViewInput, UITab
     
     var presenter: ICATTimelinePresenter = ICATTimelinePresenter()
     var timelines: Array<ICATTimelineModel>?
-    var timelineStatus:ICATTimelineStatus = .Loading
+    var timelineStatus:ICATTimelineStatus = .loading
     
     override func viewDidLoad() {
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         presenter.viewInput = self
@@ -33,49 +33,49 @@ class ICATTimelineViewController: UIViewController, ICATTimelineViewInput, UITab
     
     // MARK: ICATTimelineViewInput
     
-    func setTimelinesModel(timelinesModel: ICATTimelinesModel) {
+    func setTimelinesModel(_ timelinesModel: ICATTimelinesModel) {
         timelines = timelinesModel.timelines
         self.tableView.reloadData()
     }
     
-    func changedStatus(status: ICATTimelineStatus) {
+    func changedStatus(_ status: ICATTimelineStatus) {
         timelineStatus = status
-        if (status == .NotAuthorized) {
-            performSegueWithIdentifier("LoginAccount", sender: nil)
+        if (status == .notAuthorized) {
+            performSegue(withIdentifier: "LoginAccount", sender: nil)
         }
         
         self.tableView.reloadData()
     }
     
     // MARK: Table view data source
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (timelineStatus != .Normal) {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (timelineStatus != .normal) {
             return 1
         }
         return timelines?.count ?? 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch timelineStatus {
-        case .Normal:
-            let cell = tableView.dequeueReusableCellWithIdentifier("TimelineViewCell", forIndexPath: indexPath) as! ICATTimelineViewCell
+        case .normal:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineViewCell", for: indexPath) as! ICATTimelineViewCell
             
             let timeline: ICATTimelineModel = timelines![indexPath.row]
             cell.updateCell(timeline)
             
             return cell
-        case .NotAuthorized:
-            return tableView.dequeueReusableCellWithIdentifier("Nodata", forIndexPath: indexPath)
-        case .Loading:
-            return tableView.dequeueReusableCellWithIdentifier("Loading", forIndexPath: indexPath)
-        case .Error:
-            return tableView.dequeueReusableCellWithIdentifier("Error", forIndexPath: indexPath)
-        case .None:
-            return tableView.dequeueReusableCellWithIdentifier("Nodata", forIndexPath: indexPath)
+        case .notAuthorized:
+            return tableView.dequeueReusableCell(withIdentifier: "Nodata", for: indexPath)
+        case .loading:
+            return tableView.dequeueReusableCell(withIdentifier: "Loading", for: indexPath)
+        case .error:
+            return tableView.dequeueReusableCell(withIdentifier: "Error", for: indexPath)
+        case .none:
+            return tableView.dequeueReusableCell(withIdentifier: "Nodata", for: indexPath)
         }
     }
 }

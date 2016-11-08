@@ -21,7 +21,7 @@ class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInpu
     
     var presenter: ICATLoginAccountPresenter = ICATLoginAccountPresenter()
     var twitterAccountsModel: ICATRegisteredAccountsModel?
-    var accountStatus: ICATLoginAccountStatus = .None
+    var accountStatus: ICATLoginAccountStatus = .none
 
     override func viewDidLoad() {
         presenter.viewInput = self
@@ -30,27 +30,27 @@ class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInpu
     
     // MARK: ICATLoginUserView
     
-    func setAccountsModel(accountsModel: ICATRegisteredAccountsModel) {
+    func setAccountsModel(_ accountsModel: ICATRegisteredAccountsModel) {
         twitterAccountsModel = accountsModel
         self.tableView.reloadData()
     }
     
-    func changedStatus(status: ICATLoginAccountStatus) {
+    func changedStatus(_ status: ICATLoginAccountStatus) {
         switch status {
-        case .Normal:
+        case .normal:
             footerLabel.text = "Select use account"
-        case .Error:
+        case .error:
             footerLabel.text = "An error occured"
-        case .NotAuthorized:
+        case .notAuthorized:
             footerLabel.text = "Not authorized"
-        case .None:
+        case .none:
             footerLabel.text = "No twitter user"
         }
     }
     
-    func selectAccountResult(isSuccess: Bool) {
+    func selectAccountResult(_ isSuccess: Bool) {
         if (isSuccess) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
             return
         }
         
@@ -58,16 +58,16 @@ class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInpu
     }
     
     // MARK: Table view data source
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (twitterAccountsModel?.accounts.count) ?? 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LoginAccountCell", forIndexPath: indexPath) as! ICATLoginAccountViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LoginAccountCell", for: indexPath) as! ICATLoginAccountViewCell
         
         let account: ICATRegisteredAccountModel = twitterAccountsModel!.accounts[indexPath.row]
         cell.updateCell(account)
@@ -75,16 +75,16 @@ class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInpu
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.selectAccount(indexPath.row)
     }
     
     // MARK: UIButton
-    @IBAction func tapCancel(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func tapCancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func tapReload(sender: UIBarButtonItem) {
+    @IBAction func tapReload(_ sender: UIBarButtonItem) {
         // Reload accounts
         presenter.loadAccounts()
     }

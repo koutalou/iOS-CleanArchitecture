@@ -18,32 +18,32 @@ class ICATRestSLRequest: NSObject {
      * TODO: Need to support pagenation
      * Add @params parameters: NSDictionary
      */
-    func getTimeline(account: ACAccount, callback: (Array<ICATTimelineEntity>?, ICATError) -> Void) {
+    func getTimeline(_ account: ACAccount, callback: @escaping (Array<ICATTimelineEntity>?, ICATError) -> Void) {
         
         let realm = try! Realm()
         let preloadRowTimelineModels: Array<ICATTimelineEntity>? = realm.objects(ICATTimelineEntity) as? Array<ICATTimelineEntity>
         if (preloadRowTimelineModels != nil && preloadRowTimelineModels!.count > 0) {
-            callback(preloadRowTimelineModels, ICATError.NoError)
+            callback(preloadRowTimelineModels, ICATError.noError)
         }
         
         let url: String = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         
-        let request: SLRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: NSURL(string: url), parameters: nil)
+        let request: SLRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, url: URL(string: url), parameters: nil)
         
         request.account = account
-        request.performRequestWithHandler { (responseData, urlResponse, error) -> Void in
+        request.perform { (responseData, urlResponse, error) -> Void in
             
-            let statusCode = urlResponse.statusCode;
-            if (statusCode < 200 || statusCode >= 300) {
-                callback(nil, ICATError.Network)
+            let statusCode = urlResponse?.statusCode;
+            if (statusCode! < 200 || statusCode! >= 300) {
+                callback(nil, ICATError.network)
                 return
             }
             do {
-                let array = try NSJSONSerialization.JSONObjectWithData(responseData!,
-                    options: NSJSONReadingOptions.MutableContainers) as! NSArray
+                let array = try JSONSerialization.jsonObject(with: responseData!,
+                    options: JSONSerialization.ReadingOptions.mutableContainers) as! NSArray
                 guard let rowTimelines:[ICATTimelineEntity] = Mapper<ICATTimelineEntity>().mapArray(array) else {
                     // Can not convert
-                    callback(nil, ICATError.Generic)
+                    callback(nil, ICATError.generic)
                     return
                 }
                 
@@ -56,9 +56,9 @@ class ICATRestSLRequest: NSObject {
                     })
                 }
                 
-                callback(rowTimelines, ICATError.NoError)
+                callback(rowTimelines, ICATError.noError)
             } catch {
-                callback(nil, ICATError.Generic)
+                callback(nil, ICATError.generic)
             }
         }
     }

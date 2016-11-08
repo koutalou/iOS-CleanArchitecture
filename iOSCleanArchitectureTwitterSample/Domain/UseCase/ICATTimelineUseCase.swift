@@ -11,9 +11,9 @@ import SwiftTask
 import Accounts
 
 protocol ICATTimelineUseCaseOutput: class {
-    func loadTimelines(timelinesModel: ICATTimelinesModel)
+    func loadTimelines(_ timelinesModel: ICATTimelinesModel)
     func notAuthorizedOrNoAccount()
-    func loadTimelinesError(error: ICATError)
+    func loadTimelinesError(_ error: ICATError)
 }
 
 class ICATTimelineUseCase: NSObject {
@@ -41,11 +41,11 @@ class ICATTimelineUseCase: NSObject {
                 let timelinesModel = ICATTimelineTranslater.generateTimelines(timelines!)
                 self.output?.loadTimelines(timelinesModel)
             }.failure{ (error, isCancelled) -> Void in
-                self.output?.loadTimelinesError(error ?? ICATError.Generic)
+                self.output?.loadTimelinesError(error ?? ICATError.generic)
             }
         }
         .failure { (error, isCancelled) -> Void in
-            self.output?.loadTimelinesError(error ?? ICATError.Generic)
+            self.output?.loadTimelinesError(error ?? ICATError.generic)
         }
     }
 }

@@ -12,25 +12,25 @@ import Accounts
 
 class ICATSocialAccountDataStore: NSObject {
     
-    func getTwitterAccounts(callback: (Array<ACAccount>, ICATError) -> Void) {
+    func getTwitterAccounts(_ callback: @escaping (Array<ACAccount>, ICATError) -> Void) {
         let accountStore = ACAccountStore()
-        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-        accountStore.requestAccessToAccountsWithType(accountType, options: nil) { (authorized, error) -> Void in
+        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+        accountStore.requestAccessToAccounts(with: accountType, options: nil) { (authorized, error) -> Void in
             if (error != nil) {
                 // Error
-                callback([], ICATError.Generic)
+                callback([], ICATError.generic)
                 return
             }
             
             if (!authorized) {
                 // Not Authorized
-                callback([], ICATError.NotAuthorized)
+                callback([], ICATError.notAuthorized)
                 return
             }
             
             // Authorized
-            let accounts = accountStore.accountsWithAccountType(accountType) as? Array<ACAccount> ?? []
-            callback(accounts, ICATError.NoError)
+            let accounts = accountStore.accounts(with: accountType) as? Array<ACAccount> ?? []
+            callback(accounts, ICATError.noError)
         }
     }
 }

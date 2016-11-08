@@ -22,7 +22,7 @@ class ICATRegisteredAccountModel: NSObject {
     required init(account: ACAccount, index: Int) {
         super.init()
         name = account.username
-        identifier = account.identifier ?? ""
+        identifier = account.identifier as String? ?? ""
         id = index
     }
 }

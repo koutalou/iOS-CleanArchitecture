@@ -8,12 +8,36 @@
 
 import Foundation
 import Accounts
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
 
 enum ICATLoginAccountStatus {
-    case None
-    case Normal
-    case NotAuthorized
-    case Error
+    case none
+    case normal
+    case notAuthorized
+    case error
 }
 
 class ICATLoginAccountPresenter: NSObject, ICATLoginAccountUseCaseOutput {
@@ -27,7 +51,7 @@ class ICATLoginAccountPresenter: NSObject, ICATLoginAccountUseCaseOutput {
         usecase.loadAccounts()
     }
     
-    func selectAccount(index: Int) {
+    func selectAccount(_ index: Int) {
         if (accountsModel?.accounts.count <= index) {
             // Error
             return
@@ -39,27 +63,27 @@ class ICATLoginAccountPresenter: NSObject, ICATLoginAccountUseCaseOutput {
     
     // MARK: ICATLoginAccountUseCaseOutput
     
-    func loadTwitterAccounts(registeredAccountsModel: ICATRegisteredAccountsModel) {
+    func loadTwitterAccounts(_ registeredAccountsModel: ICATRegisteredAccountsModel) {
         accountsModel = registeredAccountsModel
-        dispatch_async(dispatch_get_main_queue()) { [weak self]() -> Void in
+        DispatchQueue.main.async { [weak self]() -> Void in
             self?.viewInput?.setAccountsModel(self!.accountsModel!)
             let isNoData: Bool = self!.accountsModel!.accounts.count == 0
-            self?.viewInput?.changedStatus(isNoData ? ICATLoginAccountStatus.None : ICATLoginAccountStatus.Normal)
+            self?.viewInput?.changedStatus(isNoData ? ICATLoginAccountStatus.none : ICATLoginAccountStatus.normal)
         }
     }
     
-    func loadTwitterAccountsErorr(error: ICATError) {
-        dispatch_async(dispatch_get_main_queue()) { [weak self]() -> Void in
-            if (error == .NotAuthorized) {
-                self?.viewInput?.changedStatus(ICATLoginAccountStatus.NotAuthorized)
+    func loadTwitterAccountsErorr(_ error: ICATError) {
+        DispatchQueue.main.async { [weak self]() -> Void in
+            if (error == .notAuthorized) {
+                self?.viewInput?.changedStatus(ICATLoginAccountStatus.notAuthorized)
             } else {
-                self?.viewInput?.changedStatus(ICATLoginAccountStatus.Error)
+                self?.viewInput?.changedStatus(ICATLoginAccountStatus.error)
             }
         }
     }
     
-    func resultSelectAccount(isSuccess: Bool) {
-        dispatch_async(dispatch_get_main_queue()) { [weak self]() -> Void in
+    func resultSelectAccount(_ isSuccess: Bool) {
+        DispatchQueue.main.async { [weak self]() -> Void in
             self?.viewInput?.selectAccountResult(isSuccess)
         }
     }

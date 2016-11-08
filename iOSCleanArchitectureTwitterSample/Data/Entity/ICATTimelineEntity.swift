@@ -19,7 +19,7 @@ class ICATTimelineEntity: Object,Mappable {
         self.init()
     }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         text <- map["text"]
         createdAt <- map["created_at"]
         user <- map["user"]
@@ -35,7 +35,7 @@ class ICATUserEntity: Object, Mappable {
         self.init()
     }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         screenName <- map["screen_name"]
         prifileUrl <- map["profile_image_url_https"]
         name <- map["name"]

@@ -11,9 +11,9 @@ import Accounts
 
 class ICATRegisteredAccountTranslater: NSObject {
     
-    class func generateRegisteredAccount(accounts: Array<ACAccount>, selectedIdentifier: String?) -> ICATRegisteredAccountsModel {
+    class func generateRegisteredAccount(_ accounts: Array<ACAccount>, selectedIdentifier: String?) -> ICATRegisteredAccountsModel {
         let registeredAccountsModel: ICATRegisteredAccountsModel = ICATRegisteredAccountsModel()
-        accounts.enumerate().forEach({ (index: Int, account: ACAccount) -> () in
+        accounts.enumerated().forEach({ (index: Int, account: ACAccount) -> () in
             let registeredAccountModel = ICATRegisteredAccountModel(account: account, index: index)
             registeredAccountModel.isSelected = registeredAccountModel.identifier == selectedIdentifier
             registeredAccountsModel.accounts.append(registeredAccountModel)

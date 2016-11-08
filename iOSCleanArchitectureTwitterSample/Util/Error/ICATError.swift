@@ -9,12 +9,12 @@
 import Foundation
 
 enum ICATError {
-    case NoError
-    case Network
-    case NotAuthorized
-    case Generic
+    case noError
+    case network
+    case notAuthorized
+    case generic
     
     var isError: Bool {
-        return self != .NoError
+        return self != .noError
     }
 }

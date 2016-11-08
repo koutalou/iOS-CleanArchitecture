@@ -26,7 +26,7 @@ class ICATLoginAccountRepository: NSObject {
         }
     }
     
-    func updateSelecteTwitterAccountTask(account: ACAccount) -> Task<Void, Void, ICATError> {
+    func updateSelecteTwitterAccountTask(_ account: ACAccount) -> Task<Void, Void, ICATError> {
         return Task { _,fulfill, reject, configure in
             self.dataStore.updateSelectedTwitterAccountId(account, callback: { (error) -> Void in
                 if (error.isError) {

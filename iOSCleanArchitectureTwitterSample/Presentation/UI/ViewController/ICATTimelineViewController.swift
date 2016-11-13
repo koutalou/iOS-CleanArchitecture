@@ -22,6 +22,8 @@ class ICATTimelineViewController: UIViewController, ICATTimelineViewInput, UITab
     var timelineStatus:ICATTimelineStatus = .loading
     
     override func viewDidLoad() {
+        tableView.estimatedRowHeight = 70
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {

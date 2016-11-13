@@ -11,17 +11,17 @@ import UIKit
 struct LoginAccountBuilder {
     func build() -> UINavigationController {
         let wireframe = LoginAccountWireframeImpl()
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Login") as! ICATLoginAccountViewController
-        let useCase = ICATLoginAccountUseCaseImpl(
-            loginAccountRepository: ICATLoginAccountRepositoryImpl(
-                dataStore: ICATLoginAccountDataStoreImpl()
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Login") as! LoginAccountViewController
+        let useCase = LoginAccountUseCaseImpl(
+            loginAccountRepository: LoginAccountRepositoryImpl(
+                dataStore: LoginAccountDataStoreImpl()
             ),
-            socialAccountRepository: ICATSocialAccountRepositoryImpl(
-                dataStore: ICATSocialAccountDataStoreImpl()
+            socialAccountRepository: SocialAccountRepositoryImpl(
+                dataStore: SocialAccountDataStoreImpl()
             )
         )
         
-        let presenter = ICATLoginAccountPresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe)
+        let presenter = LoginAccountPresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe)
         viewController.inject(presenter: presenter, wireframe: wireframe)
         wireframe.viewController = viewController
         

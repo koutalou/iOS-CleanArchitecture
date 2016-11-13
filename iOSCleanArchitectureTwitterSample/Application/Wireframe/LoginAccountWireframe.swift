@@ -9,13 +9,13 @@
 import Foundation
 
 protocol LoginAccountWireframe: class {
-    weak var viewController: ICATLoginAccountViewController? { get set }
+    weak var viewController: LoginAccountViewController? { get set }
     
     func closeView()
 }
 
 class LoginAccountWireframeImpl: LoginAccountWireframe {
-    weak var viewController: ICATLoginAccountViewController?
+    weak var viewController: LoginAccountViewController?
     
     func closeView() {
         viewController?.dismiss(animated: true, completion: nil)

@@ -1,5 +1,5 @@
 //
-//  ICATTimelinePresenter.swift
+//  TimelinePresenter.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/20.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-enum ICATTimelineStatus {
+enum TimelineStatus {
     case none
     case notAuthorized
     case loading
@@ -17,20 +17,20 @@ enum ICATTimelineStatus {
     case error
 }
 
-protocol ICATTimelinePresenter {
+protocol TimelinePresenter {
     func loadTimelines()
     func tapPersonButton()
 }
 
-class ICATTimelinePresenterImpl: ICATTimelinePresenter {
+class TimelinePresenterImpl: TimelinePresenter {
     
-    weak var viewInput: ICATTimelineViewInput?
+    weak var viewInput: TimelineViewInput?
     var wireframe: TimelineWireframe?
-    var useCase: ICATTimelineUseCase
+    var useCase: TimelineUseCase
     
     private let disposeBag = DisposeBag()
 
-    public required init(useCase: ICATTimelineUseCase, viewInput: ICATTimelineViewInput, wireframe: TimelineWireframe) {
+    public required init(useCase: TimelineUseCase, viewInput: TimelineViewInput, wireframe: TimelineWireframe) {
         self.useCase = useCase
         self.viewInput = viewInput
         self.wireframe = wireframe
@@ -46,7 +46,7 @@ class ICATTimelinePresenterImpl: ICATTimelinePresenter {
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
-        viewInput?.changedStatus(ICATTimelineStatus.loading)
+        viewInput?.changedStatus(TimelineStatus.loading)
     }
     
     func tapPersonButton() {
@@ -55,27 +55,27 @@ class ICATTimelinePresenterImpl: ICATTimelinePresenter {
 }
 
 // MARK: Private
-extension ICATTimelinePresenterImpl {
-    fileprivate func loadedTimelinesModel(timelines: ICATTimelinesModel) {
+extension TimelinePresenterImpl {
+    fileprivate func loadedTimelinesModel(timelines: TimelinesModel) {
         DispatchQueue.main.async { [weak self] in
             self?.viewInput?.setTimelinesModel(timelines)
             let isNoData: Bool = timelines.timelines.count == 0
-            self?.viewInput?.changedStatus(isNoData ? ICATTimelineStatus.none : ICATTimelineStatus.normal)
+            self?.viewInput?.changedStatus(isNoData ? TimelineStatus.none : TimelineStatus.normal)
         }
     }
     
     fileprivate func errorHandling(error: Error) {
         DispatchQueue.main.async { [weak self] in
-            guard let error = error as? ICATError else {
-                self?.viewInput?.changedStatus(ICATTimelineStatus.error)
+            guard let error = error as? AppError else {
+                self?.viewInput?.changedStatus(TimelineStatus.error)
                 return
             }
             switch error {
             case .notAuthorized:
-                self?.viewInput?.changedStatus(ICATTimelineStatus.notAuthorized)
+                self?.viewInput?.changedStatus(TimelineStatus.notAuthorized)
                 self?.wireframe?.showLogin()
             default:
-                self?.viewInput?.changedStatus(ICATTimelineStatus.error)
+                self?.viewInput?.changedStatus(TimelineStatus.error)
             }
         }
     }

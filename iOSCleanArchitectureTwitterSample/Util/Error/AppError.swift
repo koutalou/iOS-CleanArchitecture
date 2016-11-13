@@ -1,5 +1,5 @@
 //
-//  ICATError.swift
+//  AppError.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/21.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ICATError: Error {
+enum AppError: Error {
     case noError
     case network
     case notAuthorized

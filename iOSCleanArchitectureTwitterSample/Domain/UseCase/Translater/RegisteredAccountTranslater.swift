@@ -1,5 +1,5 @@
 //
-//  ICATRegisteredAccountTranslater.swift
+//  RegisteredAccountTranslater.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by Kodama.Kotaro on 2015/12/21.
@@ -9,14 +9,14 @@
 import Foundation
 import Accounts
 
-struct ICATRegisteredAccountTranslater: Translator {
+struct RegisteredAccountTranslater: Translator {
     typealias Input = (accounts: [ACAccount], selectedIdentifier: String?)
-    typealias Output = ICATRegisteredAccountsModel
+    typealias Output = RegisteredAccountsModel
     
-    func translate(_ entity: (accounts: [ACAccount], selectedIdentifier: String?)) throws -> ICATRegisteredAccountsModel {
-        var registeredAccountsModel: ICATRegisteredAccountsModel = ICATRegisteredAccountsModel()
+    func translate(_ entity: (accounts: [ACAccount], selectedIdentifier: String?)) throws -> RegisteredAccountsModel {
+        var registeredAccountsModel: RegisteredAccountsModel = RegisteredAccountsModel()
         entity.accounts.enumerated().forEach({ (index: Int, account: ACAccount) -> () in
-            var registeredAccountModel = ICATRegisteredAccountModel(account: account, index: index)
+            var registeredAccountModel = RegisteredAccountModel(account: account, index: index)
             registeredAccountModel.isSelected = registeredAccountModel.identifier == entity.selectedIdentifier
             registeredAccountsModel.accounts.append(registeredAccountModel)
         })

@@ -1,5 +1,5 @@
 //
-//  ICATTimelineViewController.swift
+//  TimelineViewController.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/20.
@@ -8,21 +8,21 @@
 
 import UIKit
 
-protocol ICATTimelineViewInput: class {
-    func setTimelinesModel(_: ICATTimelinesModel) -> Void
-    func changedStatus(_: ICATTimelineStatus) -> Void
+protocol TimelineViewInput: class {
+    func setTimelinesModel(_: TimelinesModel) -> Void
+    func changedStatus(_: TimelineStatus) -> Void
 }
 
-class ICATTimelineViewController: UIViewController {
+class TimelineViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
     private weak var wireframe: TimelineWireframe?
-    var presenter: ICATTimelinePresenter?
-    var timelines: Array<ICATTimelineModel>?
-    var timelineStatus:ICATTimelineStatus = .loading
+    var presenter: TimelinePresenter?
+    var timelines: Array<TimelineModel>?
+    var timelineStatus:TimelineStatus = .loading
     
-    public func inject(presenter: ICATTimelinePresenter, wireframe: TimelineWireframe) {
+    public func inject(presenter: TimelinePresenter, wireframe: TimelineWireframe) {
         self.presenter = presenter
         self.wireframe = wireframe
     }
@@ -39,14 +39,14 @@ class ICATTimelineViewController: UIViewController {
     }
 }
 
-// MARK: ICATTimelineViewInput
-extension ICATTimelineViewController: ICATTimelineViewInput {
-    func setTimelinesModel(_ timelinesModel: ICATTimelinesModel) {
+// MARK: TimelineViewInput
+extension TimelineViewController: TimelineViewInput {
+    func setTimelinesModel(_ timelinesModel: TimelinesModel) {
         timelines = timelinesModel.timelines
         self.tableView.reloadData()
     }
     
-    func changedStatus(_ status: ICATTimelineStatus) {
+    func changedStatus(_ status: TimelineStatus) {
         timelineStatus = status
         if (status == .notAuthorized) {
             performSegue(withIdentifier: "LoginAccount", sender: nil)
@@ -57,14 +57,14 @@ extension ICATTimelineViewController: ICATTimelineViewInput {
 }
 
 // MARK: Button Event
-extension ICATTimelineViewController {
+extension TimelineViewController {
     @IBAction func tapPersonButton(_ sender: Any) {
         presenter?.tapPersonButton()
     }
 }
 
 // MARK: Table view data source
-extension ICATTimelineViewController: UITableViewDelegate, UITableViewDataSource {
+extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -79,9 +79,9 @@ extension ICATTimelineViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch timelineStatus {
         case .normal:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineViewCell", for: indexPath) as! ICATTimelineViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineViewCell", for: indexPath) as! TimelineViewCell
             
-            let timeline: ICATTimelineModel = timelines![indexPath.row]
+            let timeline: TimelineModel = timelines![indexPath.row]
             cell.updateCell(timeline)
             
             return cell

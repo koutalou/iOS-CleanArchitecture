@@ -1,5 +1,5 @@
 //
-//  ICATLoginUserDataStore.swift
+//  LoginUserDataStore.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/20.
@@ -12,12 +12,12 @@ import RxSwift
 import Accounts
 
 // MARK: - Interface
-public protocol ICATSocialAccountDataStore {
+public protocol SocialAccountDataStore {
     func getTwitterAccounts() -> Observable<[ACAccount]>
 }
 
 // MARK: - Implementation
-struct ICATSocialAccountDataStoreImpl: ICATSocialAccountDataStore {
+struct SocialAccountDataStoreImpl: SocialAccountDataStore {
     
     func getTwitterAccounts() -> Observable<[ACAccount]> {
         let accountStore = ACAccountStore()
@@ -27,13 +27,13 @@ struct ICATSocialAccountDataStoreImpl: ICATSocialAccountDataStore {
             accountStore.requestAccessToAccounts(with: accountType, options: nil) { (authorized, error) -> Void in
                 if (error != nil) {
                     // Generic Error
-                    observer.onError(ICATError.generic)
+                    observer.onError(AppError.generic)
                     return
                 }
                 
                 if (!authorized) {
                     // Not Authorized
-                    observer.onError(ICATError.notAuthorized)
+                    observer.onError(AppError.notAuthorized)
                     return
                 }
                 

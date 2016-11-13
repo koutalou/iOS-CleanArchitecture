@@ -9,13 +9,13 @@
 import Foundation
 
 protocol TimelineWireframe: class {
-    weak var viewController: ICATTimelineViewController? { get set }
+    weak var viewController: TimelineViewController? { get set }
     
     func showLogin()
 }
 
 class TimelineWireframeImpl: TimelineWireframe {
-    weak var viewController: ICATTimelineViewController?
+    weak var viewController: TimelineViewController?
     
     func showLogin() {
         let nextViewController = LoginAccountBuilder().build()

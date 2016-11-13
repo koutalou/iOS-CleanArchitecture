@@ -11,20 +11,20 @@ import UIKit
 struct TimelineBuilder {
     func build() -> UIViewController {
         let wireframe = TimelineWireframeImpl()
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Timeline") as! ICATTimelineViewController
-        let useCase = ICATTimelineUseCase(
-            loginAccountRepository: ICATLoginAccountRepositoryImpl(
-                dataStore: ICATLoginAccountDataStoreImpl()
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Timeline") as! TimelineViewController
+        let useCase = TimelineUseCase(
+            loginAccountRepository: LoginAccountRepositoryImpl(
+                dataStore: LoginAccountDataStoreImpl()
             ),
-            socialAccountRepository: ICATSocialAccountRepositoryImpl(
-                dataStore: ICATSocialAccountDataStoreImpl()
+            socialAccountRepository: SocialAccountRepositoryImpl(
+                dataStore: SocialAccountDataStoreImpl()
             ),
-            timelineRepository: ICATTimelineRepositoryImpl(
-                dataStore: ICATTimelineDataStoreImpl()
+            timelineRepository: TimelineRepositoryImpl(
+                dataStore: TimelineDataStoreImpl()
             )
         )
     
-        let presenter = ICATTimelinePresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe)
+        let presenter = TimelinePresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe)
         viewController.inject(presenter: presenter, wireframe: wireframe)
         wireframe.viewController = viewController
         

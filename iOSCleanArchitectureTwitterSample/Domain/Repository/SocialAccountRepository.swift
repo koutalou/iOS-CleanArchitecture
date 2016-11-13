@@ -1,5 +1,5 @@
 //
-//  ICATSocialAccountRepository.swift
+//  SocialAccountRepository.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by Kodama.Kotaro on 2015/12/21.
@@ -11,15 +11,15 @@ import RxSwift
 import Accounts
 
 // MARK: - Interface
-public protocol ICATSocialAccountRepository {
+public protocol SocialAccountRepository {
     func getTwitterAccountsTask() -> Observable<[ACAccount]>
 }
 
 // MARK: - Implementation
-struct ICATSocialAccountRepositoryImpl: ICATSocialAccountRepository {
-    private let dataStore: ICATSocialAccountDataStore
+struct SocialAccountRepositoryImpl: SocialAccountRepository {
+    private let dataStore: SocialAccountDataStore
     
-    public init(dataStore: ICATSocialAccountDataStore) {
+    public init(dataStore: SocialAccountDataStore) {
         self.dataStore = dataStore
     }
     

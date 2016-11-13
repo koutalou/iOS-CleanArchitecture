@@ -1,5 +1,5 @@
 //
-//  ICATTimelineEntity.swift
+//  TimelineEntity.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by Kodama.Kotaro on 2015/12/21.
@@ -10,10 +10,10 @@ import Foundation
 import ObjectMapper
 import RealmSwift
 
-public class ICATTimelineEntity: Object,Mappable {
+public class TimelineEntity: Object,Mappable {
     var text = ""
     var createdAt = ""
-    dynamic var user: ICATUserEntity? = nil
+    dynamic var user: UserEntity? = nil
     
     required convenience public init?(map: Map) {
         self.init()
@@ -26,7 +26,7 @@ public class ICATTimelineEntity: Object,Mappable {
     }
 }
 
-public class ICATUserEntity: Object, Mappable {
+public class UserEntity: Object, Mappable {
     var screenName = ""
     var prifileUrl = ""
     var name = ""

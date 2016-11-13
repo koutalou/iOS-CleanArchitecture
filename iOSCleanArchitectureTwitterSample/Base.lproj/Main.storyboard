@@ -12,7 +12,7 @@
         <!--Timeline-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Timeline" id="BYZ-38-t0r" customClass="ICATTimelineViewController" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Timeline" id="BYZ-38-t0r" customClass="TimelineViewController" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimelineViewCell" id="aRt-QS-fk3" customClass="ICATTimelineViewCell" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimelineViewCell" id="aRt-QS-fk3" customClass="TimelineViewCell" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aRt-QS-fk3" id="gxb-8p-2O8">
@@ -40,7 +40,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eT-zP-ewR">
-                                                    <rect key="frame" x="201.5" y="8" width="50.5" height="17"/>
+                                                    <rect key="frame" x="202" y="8" width="51" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -60,13 +60,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet Text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFa-AC-xaV">
-                                                    <rect key="frame" x="84" y="31.5" width="275" height="42.5"/>
+                                                    <rect key="frame" x="84" y="32" width="275" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-fM-pWj">
-                                                    <rect key="frame" x="84" y="8" width="107.5" height="21.5"/>
+                                                    <rect key="frame" x="84" y="8" width="108" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21.5" id="alG-co-IOf"/>
                                                     </constraints>
@@ -210,7 +210,7 @@
         <!--Login User-->
         <scene sceneID="Arq-eL-M0v">
             <objects>
-                <viewController storyboardIdentifier="Login" id="kNL-PA-2AG" customClass="ICATLoginAccountViewController" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="kNL-PA-2AG" customClass="LoginAccountViewController" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RwX-rs-QWX"/>
                         <viewControllerLayoutGuide type="bottom" id="2oN-oN-Gsu"/>
@@ -240,7 +240,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoginAccountCell" id="Cw0-Ev-z10" customClass="ICATLoginAccountViewCell" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoginAccountCell" id="Cw0-Ev-z10" customClass="LoginAccountViewCell" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cw0-Ev-z10" id="zsQ-To-zaT">
@@ -254,7 +254,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFC-AE-hl0">
-                                                    <rect key="frame" x="0.0" y="69" width="600" height="1"/>
+                                                    <rect key="frame" x="0.0" y="69" width="375" height="1"/>
                                                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="ZNB-xb-SY9"/>

@@ -1,5 +1,5 @@
 //
-//  ICATLoginUserModel.swift
+//  LoginUserModel.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/21.
@@ -9,11 +9,11 @@
 import Foundation
 import Accounts
 
-struct ICATRegisteredAccountsModel {
-    var accounts: [ICATRegisteredAccountModel] = []
+struct RegisteredAccountsModel {
+    var accounts: [RegisteredAccountModel] = []
 }
 
-struct ICATRegisteredAccountModel {
+struct RegisteredAccountModel {
     var name: String = ""
     var identifier: String = ""
     var id: Int = 0

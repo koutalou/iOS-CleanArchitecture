@@ -1,5 +1,5 @@
 //
-//  ICATTimelineViewCell.swift
+//  TimelineViewCell.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by Kodama.Kotaro on 2015/12/21.
@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class ICATTimelineViewCell: UITableViewCell {
+class TimelineViewCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var displayName: UILabel!
@@ -17,7 +17,7 @@ class ICATTimelineViewCell: UITableViewCell {
     @IBOutlet weak var tweet: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 
-    func updateCell(_ timelineModel: ICATTimelineModel) {
+    func updateCell(_ timelineModel: TimelineModel) {
         self.name.text = "@" + timelineModel.screenName
         self.displayName.text = timelineModel.name
         self.tweet.text = timelineModel.tweet

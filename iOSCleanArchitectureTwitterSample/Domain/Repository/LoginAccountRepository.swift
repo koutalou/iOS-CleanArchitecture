@@ -1,5 +1,5 @@
 //
-//  ICATLoginUserRepository.swift
+//  LoginUserRepository.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/20.
@@ -11,17 +11,17 @@ import RxSwift
 import Accounts
 
 // MARK: - Interface
-public protocol ICATLoginAccountRepository {
+public protocol LoginAccountRepository {
     func getSelectedTwitterAccountTask() -> Observable<String?>
     func updateSelecteTwitterAccountTask(_ account: ACAccount) -> Observable<Void>
     func deleteTwitterAccount() -> Observable<Void>
 }
 
 // MARK: - Implementation
-struct ICATLoginAccountRepositoryImpl: ICATLoginAccountRepository {
-    private let dataStore: ICATLoginAccountDataStore
+struct LoginAccountRepositoryImpl: LoginAccountRepository {
+    private let dataStore: LoginAccountDataStore
     
-    public init(dataStore: ICATLoginAccountDataStore) {
+    public init(dataStore: LoginAccountDataStore) {
         self.dataStore = dataStore
     }
     

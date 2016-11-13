@@ -1,5 +1,5 @@
 //
-//  ICATRestSLRequest.swift
+//  RestSLRequest.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by Kodama.Kotaro on 2015/12/21.
@@ -16,13 +16,13 @@ import RealmSwift
 struct Context: MapContext {
 }
 
-class ICATRestSLRequest: NSObject {
+class RestSLRequest: NSObject {
 
-    func getTimeline(_ account: ACAccount) -> Observable<[ICATTimelineEntity]> {
+    func getTimeline(_ account: ACAccount) -> Observable<[TimelineEntity]> {
 //        let realm = try! Realm()
-//        let preloadRowTimelineModels: Array<ICATTimelineEntity>? = realm.objects(ICATTimelineEntity) as? Array<ICATTimelineEntity>
+//        let preloadRowTimelineModels: Array<TimelineEntity>? = realm.objects(TimelineEntity) as? Array<TimelineEntity>
 //        if (preloadRowTimelineModels != nil && preloadRowTimelineModels!.count > 0) {
-//            callback(preloadRowTimelineModels, ICATError.noError)
+//            callback(preloadRowTimelineModels, AppError.noError)
 //        }
         
         let url: String = "https://api.twitter.com/1.1/statuses/home_timeline.json"
@@ -38,12 +38,12 @@ class ICATRestSLRequest: NSObject {
                     let optionalJsonResponse = try? JSONSerialization.jsonObject(with: responseData,
                                                                            options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<[String: Any]>,
                     let jsonResponse = optionalJsonResponse else {
-                    observer.onError(ICATError.generic)
+                    observer.onError(AppError.generic)
                     return
                 }
                 
                 let context = Context()
-                let mapper = Mapper<ICATTimelineEntity>(context: context)
+                let mapper = Mapper<TimelineEntity>(context: context)
                 let rowTimelines = Array(mapper.mapSet(JSONArray: jsonResponse))
                 
                 observer.onNext(rowTimelines)

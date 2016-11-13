@@ -1,5 +1,5 @@
 //
-//  ICATLoginAccountViewCell.swift
+//  LoginAccountViewCell.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/21.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ICATLoginAccountViewCell: UITableViewCell {
+class LoginAccountViewCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
     
-    func updateCell(_ accountModel: ICATRegisteredAccountModel) {
+    func updateCell(_ accountModel: RegisteredAccountModel) {
         self.name.text = "@" + accountModel.name
         self.isSelected(accountModel.isSelected)
     }

@@ -1,5 +1,5 @@
 //
-//  ICATTimelineUseCase.swift
+//  TimelineUseCase.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by Kodama.Kotaro on 2015/12/21.
@@ -10,32 +10,32 @@ import Foundation
 import RxSwift
 import Accounts
 
-protocol ICATTimelineUseCaseOutput {
-    func loadTimelines() -> Observable<ICATTimelinesModel>
+protocol TimelineUseCaseOutput {
+    func loadTimelines() -> Observable<TimelinesModel>
 }
 
-struct ICATTimelineUseCase: ICATTimelineUseCaseOutput {
-    private let loginAccountRepository: ICATLoginAccountRepository
-    private let socialAccountRepository: ICATSocialAccountRepository
-    private let timelineRepository: ICATTimelineRepository
+struct TimelineUseCase: TimelineUseCaseOutput {
+    private let loginAccountRepository: LoginAccountRepository
+    private let socialAccountRepository: SocialAccountRepository
+    private let timelineRepository: TimelineRepository
 
-    public init(loginAccountRepository: ICATLoginAccountRepository, socialAccountRepository: ICATSocialAccountRepository, timelineRepository: ICATTimelineRepository) {
+    public init(loginAccountRepository: LoginAccountRepository, socialAccountRepository: SocialAccountRepository, timelineRepository: TimelineRepository) {
         self.loginAccountRepository = loginAccountRepository
         self.socialAccountRepository = socialAccountRepository
         self.timelineRepository = timelineRepository
     }
     
-    func loadTimelines() -> Observable<ICATTimelinesModel> {
+    func loadTimelines() -> Observable<TimelinesModel> {
         let login = loginAccountRepository.getSelectedTwitterAccountTask()
         let accounts = socialAccountRepository.getTwitterAccountsTask()
         
         return Observable.combineLatest(login, accounts) { ($0, $1) }
-            .flatMap { (identifier, accounts) -> Observable<ICATTimelinesModel> in
+            .flatMap { (identifier, accounts) -> Observable<TimelinesModel> in
                 guard let identifier = identifier, let selectAccount = accounts.filter({$0.identifier.isEqual(to: identifier)}).first else {
-                    return Observable.error(ICATError.notAuthorized)
+                    return Observable.error(AppError.notAuthorized)
                 }
                 return self.timelineRepository.getTwitterTimelineTask(selectAccount)
-                    .map(translator: ICATTimelineTranslater())
+                    .map(translator: TimelineTranslater())
         }
     }
 }

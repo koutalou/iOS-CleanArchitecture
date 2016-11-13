@@ -1,5 +1,5 @@
 //
-//  ICATLoginUserPresenter.swift
+//  LoginUserPresenter.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/20.
@@ -10,30 +10,30 @@ import Foundation
 import RxSwift
 import Accounts
 
-enum ICATLoginAccountStatus {
+enum LoginAccountStatus {
     case none
     case normal
     case notAuthorized
     case error
 }
 
-protocol ICATLoginAccountPresenter {
+protocol LoginAccountPresenter {
     func loadAccounts()
     func selectAccount(_ index: Int)
     func tapCancel()
     func tapReload()
 }
 
-class ICATLoginAccountPresenterImpl: ICATLoginAccountPresenter {
+class LoginAccountPresenterImpl: LoginAccountPresenter {
     
-    weak var viewInput: ICATLoginAccountViewInput?
-    weak var wireframe: LoginAccountWireframe?
-    var accountsModel: ICATRegisteredAccountsModel?
-    var useCase: ICATLoginAccountUseCase
+    weak var viewInput: LoginAccountViewInput?
+    var wireframe: LoginAccountWireframe?
+    var accountsModel: RegisteredAccountsModel?
+    var useCase: LoginAccountUseCase
     
     private let disposeBag = DisposeBag()
     
-    public required init(useCase: ICATLoginAccountUseCase, viewInput: ICATLoginAccountViewInput, wireframe: LoginAccountWireframe) {
+    public required init(useCase: LoginAccountUseCase, viewInput: LoginAccountViewInput, wireframe: LoginAccountWireframe) {
         self.useCase = useCase
         self.viewInput = viewInput
         self.wireframe = wireframe
@@ -55,7 +55,7 @@ class ICATLoginAccountPresenterImpl: ICATLoginAccountPresenter {
             // Not loaded yet
             return
         }
-        let selectAccount: ICATRegisteredAccountModel = accountsModel.accounts[index]
+        let selectAccount: RegisteredAccountModel = accountsModel.accounts[index]
         
         useCase.selectAccount(selectAccount)
             .subscribe(
@@ -77,14 +77,14 @@ class ICATLoginAccountPresenterImpl: ICATLoginAccountPresenter {
 }
 
 // MARK: Private
-extension ICATLoginAccountPresenterImpl {
+extension LoginAccountPresenterImpl {
 
-    fileprivate func loadedAccountsModel(accounts: ICATRegisteredAccountsModel) {
+    fileprivate func loadedAccountsModel(accounts: RegisteredAccountsModel) {
         DispatchQueue.main.async { [weak self] in
             self?.accountsModel = accounts
             self?.viewInput?.setAccountsModel(accounts)
             let isNoData: Bool = accounts.accounts.count == 0
-            self?.viewInput?.changedStatus(isNoData ? ICATLoginAccountStatus.none : ICATLoginAccountStatus.normal)
+            self?.viewInput?.changedStatus(isNoData ? LoginAccountStatus.none : LoginAccountStatus.normal)
         }
     }
     
@@ -96,15 +96,15 @@ extension ICATLoginAccountPresenterImpl {
     
     fileprivate func errorHandling(error: Error) {
         DispatchQueue.main.async { [weak self] in
-            guard let error = error as? ICATError else {
-                self?.viewInput?.changedStatus(ICATLoginAccountStatus.error)
+            guard let error = error as? AppError else {
+                self?.viewInput?.changedStatus(LoginAccountStatus.error)
                 return
             }
             switch error {
             case .notAuthorized:
-                self?.viewInput?.changedStatus(ICATLoginAccountStatus.notAuthorized)
+                self?.viewInput?.changedStatus(LoginAccountStatus.notAuthorized)
             default:
-                self?.viewInput?.changedStatus(ICATLoginAccountStatus.error)
+                self?.viewInput?.changedStatus(LoginAccountStatus.error)
             }
         }
     }

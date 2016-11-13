@@ -7,35 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0752CDFC1C2791D700C75ACB /* ICATLoginAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CDFB1C2791D700C75ACB /* ICATLoginAccountUseCase.swift */; };
-		0752CE001C27987300C75ACB /* ICATLoginAccountDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CDFF1C27987300C75ACB /* ICATLoginAccountDataStore.swift */; };
-		0752CE021C279A6400C75ACB /* ICATSocialAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE011C279A6400C75ACB /* ICATSocialAccountRepository.swift */; };
-		0752CE041C28008900C75ACB /* ICATRegisteredAccountTranslater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE031C28008900C75ACB /* ICATRegisteredAccountTranslater.swift */; };
-		0752CE091C28266D00C75ACB /* ICATTimelineUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE081C28266D00C75ACB /* ICATTimelineUseCase.swift */; };
-		0752CE0B1C28328600C75ACB /* ICATTimelineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0A1C28328600C75ACB /* ICATTimelineEntity.swift */; };
-		0752CE0D1C283E0E00C75ACB /* ICATTimelineTranslater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0C1C283E0E00C75ACB /* ICATTimelineTranslater.swift */; };
-		0752CE0F1C283EAB00C75ACB /* ICATTimelineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0E1C283EAB00C75ACB /* ICATTimelineModel.swift */; };
-		0752CE111C28452B00C75ACB /* ICATTimelineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE101C28452B00C75ACB /* ICATTimelineViewCell.swift */; };
-		0752CE171C28EF9E00C75ACB /* ICATRestSLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE161C28EF9E00C75ACB /* ICATRestSLRequest.swift */; };
+		0752CDFC1C2791D700C75ACB /* LoginAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CDFB1C2791D700C75ACB /* LoginAccountUseCase.swift */; };
+		0752CE001C27987300C75ACB /* LoginAccountDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CDFF1C27987300C75ACB /* LoginAccountDataStore.swift */; };
+		0752CE021C279A6400C75ACB /* SocialAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE011C279A6400C75ACB /* SocialAccountRepository.swift */; };
+		0752CE041C28008900C75ACB /* RegisteredAccountTranslater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE031C28008900C75ACB /* RegisteredAccountTranslater.swift */; };
+		0752CE091C28266D00C75ACB /* TimelineUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE081C28266D00C75ACB /* TimelineUseCase.swift */; };
+		0752CE0B1C28328600C75ACB /* TimelineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0A1C28328600C75ACB /* TimelineEntity.swift */; };
+		0752CE0D1C283E0E00C75ACB /* TimelineTranslater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0C1C283E0E00C75ACB /* TimelineTranslater.swift */; };
+		0752CE0F1C283EAB00C75ACB /* TimelineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0E1C283EAB00C75ACB /* TimelineModel.swift */; };
+		0752CE111C28452B00C75ACB /* TimelineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE101C28452B00C75ACB /* TimelineViewCell.swift */; };
+		0752CE171C28EF9E00C75ACB /* RestSLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE161C28EF9E00C75ACB /* RestSLRequest.swift */; };
 		270E3D631C26D9FC00C9A69E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D621C26D9FC00C9A69E /* AppDelegate.swift */; };
 		270E3D681C26D9FC00C9A69E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270E3D661C26D9FC00C9A69E /* Main.storyboard */; };
 		270E3D6A1C26D9FC00C9A69E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 270E3D691C26D9FC00C9A69E /* Assets.xcassets */; };
 		270E3D6D1C26D9FC00C9A69E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270E3D6B1C26D9FC00C9A69E /* LaunchScreen.storyboard */; };
 		270E3D781C26D9FC00C9A69E /* iOSCleanArchitectureTwitterSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D771C26D9FC00C9A69E /* iOSCleanArchitectureTwitterSampleTests.swift */; };
 		270E3D831C26D9FC00C9A69E /* iOSCleanArchitectureTwitterSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D821C26D9FC00C9A69E /* iOSCleanArchitectureTwitterSampleUITests.swift */; };
-		270E3D911C26DA3D00C9A69E /* ICATTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D901C26DA3D00C9A69E /* ICATTimelineViewController.swift */; };
-		270E3D951C26DAC700C9A69E /* ICATTimelinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D941C26DAC700C9A69E /* ICATTimelinePresenter.swift */; };
-		270E3D971C26DAE000C9A69E /* ICATTimelineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D961C26DAE000C9A69E /* ICATTimelineRepository.swift */; };
-		270E3D991C26DAEE00C9A69E /* ICATTimelineDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D981C26DAEE00C9A69E /* ICATTimelineDataStore.swift */; };
-		270E3D9E1C26DB5D00C9A69E /* ICATLoginAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D9D1C26DB5D00C9A69E /* ICATLoginAccountViewController.swift */; };
-		270E3DA01C26DB6900C9A69E /* ICATLoginAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D9F1C26DB6900C9A69E /* ICATLoginAccountPresenter.swift */; };
-		270E3DA21C26DB7500C9A69E /* ICATLoginAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DA11C26DB7500C9A69E /* ICATLoginAccountRepository.swift */; };
-		270E3DA41C26DB7E00C9A69E /* ICATSocialAccountDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DA31C26DB7E00C9A69E /* ICATSocialAccountDataStore.swift */; };
+		270E3D911C26DA3D00C9A69E /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D901C26DA3D00C9A69E /* TimelineViewController.swift */; };
+		270E3D951C26DAC700C9A69E /* TimelinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D941C26DAC700C9A69E /* TimelinePresenter.swift */; };
+		270E3D971C26DAE000C9A69E /* TimelineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D961C26DAE000C9A69E /* TimelineRepository.swift */; };
+		270E3D991C26DAEE00C9A69E /* TimelineDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D981C26DAEE00C9A69E /* TimelineDataStore.swift */; };
+		270E3D9E1C26DB5D00C9A69E /* LoginAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D9D1C26DB5D00C9A69E /* LoginAccountViewController.swift */; };
+		270E3DA01C26DB6900C9A69E /* LoginAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D9F1C26DB6900C9A69E /* LoginAccountPresenter.swift */; };
+		270E3DA21C26DB7500C9A69E /* LoginAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DA11C26DB7500C9A69E /* LoginAccountRepository.swift */; };
+		270E3DA41C26DB7E00C9A69E /* SocialAccountDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DA31C26DB7E00C9A69E /* SocialAccountDataStore.swift */; };
 		270E3DA71C26DC1F00C9A69E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270E3DA61C26DC1F00C9A69E /* Accounts.framework */; };
 		270E3DA91C26DC2400C9A69E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270E3DA81C26DC2400C9A69E /* Social.framework */; };
-		270E3DAE1C27113C00C9A69E /* ICATError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DAD1C27113C00C9A69E /* ICATError.swift */; };
-		270E3DB01C271EB100C9A69E /* ICATRegisteredAccountsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DAF1C271EB100C9A69E /* ICATRegisteredAccountsModel.swift */; };
-		270E3DB21C27291200C9A69E /* ICATLoginAccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DB11C27291200C9A69E /* ICATLoginAccountViewCell.swift */; };
+		270E3DAE1C27113C00C9A69E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DAD1C27113C00C9A69E /* AppError.swift */; };
+		270E3DB01C271EB100C9A69E /* RegisteredAccountsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DAF1C271EB100C9A69E /* RegisteredAccountsModel.swift */; };
+		270E3DB21C27291200C9A69E /* LoginAccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DB11C27291200C9A69E /* LoginAccountViewCell.swift */; };
 		276CCD011DD7E04D0089648C /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CCD001DD7E04D0089648C /* Translator.swift */; };
 		276CCD061DD8456F0089648C /* TimelineWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CCD051DD8456F0089648C /* TimelineWireframe.swift */; };
 		276CCD081DD845C00089648C /* LoginAccountWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CCD071DD845C00089648C /* LoginAccountWireframe.swift */; };
@@ -64,16 +64,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0752CDFB1C2791D700C75ACB /* ICATLoginAccountUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATLoginAccountUseCase.swift; path = Domain/UseCase/ICATLoginAccountUseCase.swift; sourceTree = "<group>"; };
-		0752CDFF1C27987300C75ACB /* ICATLoginAccountDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATLoginAccountDataStore.swift; path = Data/DataStore/ICATLoginAccountDataStore.swift; sourceTree = "<group>"; };
-		0752CE011C279A6400C75ACB /* ICATSocialAccountRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATSocialAccountRepository.swift; path = Domain/Repository/ICATSocialAccountRepository.swift; sourceTree = "<group>"; };
-		0752CE031C28008900C75ACB /* ICATRegisteredAccountTranslater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATRegisteredAccountTranslater.swift; path = Domain/UseCase/Translater/ICATRegisteredAccountTranslater.swift; sourceTree = "<group>"; };
-		0752CE081C28266D00C75ACB /* ICATTimelineUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATTimelineUseCase.swift; path = Domain/UseCase/ICATTimelineUseCase.swift; sourceTree = "<group>"; };
-		0752CE0A1C28328600C75ACB /* ICATTimelineEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATTimelineEntity.swift; path = Data/Entity/ICATTimelineEntity.swift; sourceTree = "<group>"; };
-		0752CE0C1C283E0E00C75ACB /* ICATTimelineTranslater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATTimelineTranslater.swift; path = Domain/UseCase/Translater/ICATTimelineTranslater.swift; sourceTree = "<group>"; };
-		0752CE0E1C283EAB00C75ACB /* ICATTimelineModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATTimelineModel.swift; path = Domain/Model/ICATTimelineModel.swift; sourceTree = "<group>"; };
-		0752CE101C28452B00C75ACB /* ICATTimelineViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATTimelineViewCell.swift; path = Presentation/UI/Cell/ICATTimelineViewCell.swift; sourceTree = "<group>"; };
-		0752CE161C28EF9E00C75ACB /* ICATRestSLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATRestSLRequest.swift; path = Data/Network/ICATRestSLRequest.swift; sourceTree = "<group>"; };
+		0752CDFB1C2791D700C75ACB /* LoginAccountUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAccountUseCase.swift; path = Domain/UseCase/LoginAccountUseCase.swift; sourceTree = "<group>"; };
+		0752CDFF1C27987300C75ACB /* LoginAccountDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAccountDataStore.swift; path = Data/DataStore/LoginAccountDataStore.swift; sourceTree = "<group>"; };
+		0752CE011C279A6400C75ACB /* SocialAccountRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocialAccountRepository.swift; path = Domain/Repository/SocialAccountRepository.swift; sourceTree = "<group>"; };
+		0752CE031C28008900C75ACB /* RegisteredAccountTranslater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisteredAccountTranslater.swift; path = Domain/UseCase/Translater/RegisteredAccountTranslater.swift; sourceTree = "<group>"; };
+		0752CE081C28266D00C75ACB /* TimelineUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineUseCase.swift; path = Domain/UseCase/TimelineUseCase.swift; sourceTree = "<group>"; };
+		0752CE0A1C28328600C75ACB /* TimelineEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineEntity.swift; path = Data/Entity/TimelineEntity.swift; sourceTree = "<group>"; };
+		0752CE0C1C283E0E00C75ACB /* TimelineTranslater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineTranslater.swift; path = Domain/UseCase/Translater/TimelineTranslater.swift; sourceTree = "<group>"; };
+		0752CE0E1C283EAB00C75ACB /* TimelineModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineModel.swift; path = Domain/Model/TimelineModel.swift; sourceTree = "<group>"; };
+		0752CE101C28452B00C75ACB /* TimelineViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineViewCell.swift; path = Presentation/UI/Cell/TimelineViewCell.swift; sourceTree = "<group>"; };
+		0752CE161C28EF9E00C75ACB /* RestSLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestSLRequest.swift; path = Data/Network/RestSLRequest.swift; sourceTree = "<group>"; };
 		0D14D064FA9E031D81DA7399 /* Pods-iOSCleanArchitectureTwitterSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSCleanArchitectureTwitterSampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSCleanArchitectureTwitterSampleTests/Pods-iOSCleanArchitectureTwitterSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0D3E91A768FBEEE702FF5F6C /* Pods_iOSCleanArchitectureTwitterSampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSCleanArchitectureTwitterSampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21CB8D56598FD8BF8E22F832 /* Pods_iOSCleanArchitectureTwitterSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSCleanArchitectureTwitterSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,19 +89,19 @@
 		270E3D7E1C26D9FC00C9A69E /* iOSCleanArchitectureTwitterSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSCleanArchitectureTwitterSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		270E3D821C26D9FC00C9A69E /* iOSCleanArchitectureTwitterSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCleanArchitectureTwitterSampleUITests.swift; sourceTree = "<group>"; };
 		270E3D841C26D9FC00C9A69E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		270E3D901C26DA3D00C9A69E /* ICATTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATTimelineViewController.swift; path = Presentation/UI/ViewController/ICATTimelineViewController.swift; sourceTree = "<group>"; };
-		270E3D941C26DAC700C9A69E /* ICATTimelinePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATTimelinePresenter.swift; path = Presentation/Presenter/ICATTimelinePresenter.swift; sourceTree = "<group>"; };
-		270E3D961C26DAE000C9A69E /* ICATTimelineRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATTimelineRepository.swift; path = Domain/Repository/ICATTimelineRepository.swift; sourceTree = "<group>"; };
-		270E3D981C26DAEE00C9A69E /* ICATTimelineDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATTimelineDataStore.swift; path = Data/DataStore/ICATTimelineDataStore.swift; sourceTree = "<group>"; };
-		270E3D9D1C26DB5D00C9A69E /* ICATLoginAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATLoginAccountViewController.swift; path = Presentation/UI/ViewController/ICATLoginAccountViewController.swift; sourceTree = "<group>"; };
-		270E3D9F1C26DB6900C9A69E /* ICATLoginAccountPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATLoginAccountPresenter.swift; path = Presentation/Presenter/ICATLoginAccountPresenter.swift; sourceTree = "<group>"; };
-		270E3DA11C26DB7500C9A69E /* ICATLoginAccountRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATLoginAccountRepository.swift; path = Domain/Repository/ICATLoginAccountRepository.swift; sourceTree = "<group>"; };
-		270E3DA31C26DB7E00C9A69E /* ICATSocialAccountDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATSocialAccountDataStore.swift; path = Data/DataStore/ICATSocialAccountDataStore.swift; sourceTree = "<group>"; };
+		270E3D901C26DA3D00C9A69E /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineViewController.swift; path = Presentation/UI/ViewController/TimelineViewController.swift; sourceTree = "<group>"; };
+		270E3D941C26DAC700C9A69E /* TimelinePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelinePresenter.swift; path = Presentation/Presenter/TimelinePresenter.swift; sourceTree = "<group>"; };
+		270E3D961C26DAE000C9A69E /* TimelineRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineRepository.swift; path = Domain/Repository/TimelineRepository.swift; sourceTree = "<group>"; };
+		270E3D981C26DAEE00C9A69E /* TimelineDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineDataStore.swift; path = Data/DataStore/TimelineDataStore.swift; sourceTree = "<group>"; };
+		270E3D9D1C26DB5D00C9A69E /* LoginAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAccountViewController.swift; path = Presentation/UI/ViewController/LoginAccountViewController.swift; sourceTree = "<group>"; };
+		270E3D9F1C26DB6900C9A69E /* LoginAccountPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAccountPresenter.swift; path = Presentation/Presenter/LoginAccountPresenter.swift; sourceTree = "<group>"; };
+		270E3DA11C26DB7500C9A69E /* LoginAccountRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAccountRepository.swift; path = Domain/Repository/LoginAccountRepository.swift; sourceTree = "<group>"; };
+		270E3DA31C26DB7E00C9A69E /* SocialAccountDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocialAccountDataStore.swift; path = Data/DataStore/SocialAccountDataStore.swift; sourceTree = "<group>"; };
 		270E3DA61C26DC1F00C9A69E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		270E3DA81C26DC2400C9A69E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		270E3DAD1C27113C00C9A69E /* ICATError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATError.swift; path = Util/Error/ICATError.swift; sourceTree = "<group>"; };
-		270E3DAF1C271EB100C9A69E /* ICATRegisteredAccountsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATRegisteredAccountsModel.swift; path = Domain/Model/ICATRegisteredAccountsModel.swift; sourceTree = "<group>"; };
-		270E3DB11C27291200C9A69E /* ICATLoginAccountViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATLoginAccountViewCell.swift; path = Presentation/UI/Cell/ICATLoginAccountViewCell.swift; sourceTree = "<group>"; };
+		270E3DAD1C27113C00C9A69E /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppError.swift; path = Util/Error/AppError.swift; sourceTree = "<group>"; };
+		270E3DAF1C271EB100C9A69E /* RegisteredAccountsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisteredAccountsModel.swift; path = Domain/Model/RegisteredAccountsModel.swift; sourceTree = "<group>"; };
+		270E3DB11C27291200C9A69E /* LoginAccountViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAccountViewCell.swift; path = Presentation/UI/Cell/LoginAccountViewCell.swift; sourceTree = "<group>"; };
 		276CCD001DD7E04D0089648C /* Translator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Translator.swift; path = Domain/UseCase/Translater/Translator.swift; sourceTree = "<group>"; };
 		276CCD051DD8456F0089648C /* TimelineWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineWireframe.swift; sourceTree = "<group>"; };
 		276CCD071DD845C00089648C /* LoginAccountWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAccountWireframe.swift; sourceTree = "<group>"; };
@@ -186,8 +186,8 @@
 		0752CDF71C2789A800C75ACB /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				270E3D9F1C26DB6900C9A69E /* ICATLoginAccountPresenter.swift */,
-				270E3D941C26DAC700C9A69E /* ICATTimelinePresenter.swift */,
+				270E3D9F1C26DB6900C9A69E /* LoginAccountPresenter.swift */,
+				270E3D941C26DAC700C9A69E /* TimelinePresenter.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -195,9 +195,9 @@
 		0752CDF81C2789BC00C75ACB /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
-				270E3DA31C26DB7E00C9A69E /* ICATSocialAccountDataStore.swift */,
-				0752CDFF1C27987300C75ACB /* ICATLoginAccountDataStore.swift */,
-				270E3D981C26DAEE00C9A69E /* ICATTimelineDataStore.swift */,
+				270E3DA31C26DB7E00C9A69E /* SocialAccountDataStore.swift */,
+				0752CDFF1C27987300C75ACB /* LoginAccountDataStore.swift */,
+				270E3D981C26DAEE00C9A69E /* TimelineDataStore.swift */,
 			);
 			name = DataStore;
 			sourceTree = "<group>";
@@ -205,8 +205,8 @@
 		0752CDF91C278A2B00C75ACB /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				0752CDFB1C2791D700C75ACB /* ICATLoginAccountUseCase.swift */,
-				0752CE081C28266D00C75ACB /* ICATTimelineUseCase.swift */,
+				0752CDFB1C2791D700C75ACB /* LoginAccountUseCase.swift */,
+				0752CE081C28266D00C75ACB /* TimelineUseCase.swift */,
 				0752CE151C28E8E600C75ACB /* Translater */,
 			);
 			name = UseCase;
@@ -215,9 +215,9 @@
 		0752CDFA1C278A3100C75ACB /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				0752CE011C279A6400C75ACB /* ICATSocialAccountRepository.swift */,
-				270E3DA11C26DB7500C9A69E /* ICATLoginAccountRepository.swift */,
-				270E3D961C26DAE000C9A69E /* ICATTimelineRepository.swift */,
+				0752CE011C279A6400C75ACB /* SocialAccountRepository.swift */,
+				270E3DA11C26DB7500C9A69E /* LoginAccountRepository.swift */,
+				270E3D961C26DAE000C9A69E /* TimelineRepository.swift */,
 			);
 			name = Repository;
 			sourceTree = "<group>";
@@ -225,8 +225,8 @@
 		0752CDFD1C2794D700C75ACB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				270E3DAF1C271EB100C9A69E /* ICATRegisteredAccountsModel.swift */,
-				0752CE0E1C283EAB00C75ACB /* ICATTimelineModel.swift */,
+				270E3DAF1C271EB100C9A69E /* RegisteredAccountsModel.swift */,
+				0752CE0E1C283EAB00C75ACB /* TimelineModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -234,7 +234,7 @@
 		0752CDFE1C2794E500C75ACB /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				0752CE0A1C28328600C75ACB /* ICATTimelineEntity.swift */,
+				0752CE0A1C28328600C75ACB /* TimelineEntity.swift */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -242,7 +242,7 @@
 		0752CE071C281C8000C75ACB /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				0752CE161C28EF9E00C75ACB /* ICATRestSLRequest.swift */,
+				0752CE161C28EF9E00C75ACB /* RestSLRequest.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -258,8 +258,8 @@
 		0752CE131C28E8BE00C75ACB /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				270E3DB11C27291200C9A69E /* ICATLoginAccountViewCell.swift */,
-				0752CE101C28452B00C75ACB /* ICATTimelineViewCell.swift */,
+				270E3DB11C27291200C9A69E /* LoginAccountViewCell.swift */,
+				0752CE101C28452B00C75ACB /* TimelineViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -267,8 +267,8 @@
 		0752CE141C28E8C800C75ACB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				270E3D9D1C26DB5D00C9A69E /* ICATLoginAccountViewController.swift */,
-				270E3D901C26DA3D00C9A69E /* ICATTimelineViewController.swift */,
+				270E3D9D1C26DB5D00C9A69E /* LoginAccountViewController.swift */,
+				270E3D901C26DA3D00C9A69E /* TimelineViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -276,8 +276,8 @@
 		0752CE151C28E8E600C75ACB /* Translater */ = {
 			isa = PBXGroup;
 			children = (
-				0752CE031C28008900C75ACB /* ICATRegisteredAccountTranslater.swift */,
-				0752CE0C1C283E0E00C75ACB /* ICATTimelineTranslater.swift */,
+				0752CE031C28008900C75ACB /* RegisteredAccountTranslater.swift */,
+				0752CE0C1C283E0E00C75ACB /* TimelineTranslater.swift */,
 				276CCD001DD7E04D0089648C /* Translator.swift */,
 			);
 			name = Translater;
@@ -355,7 +355,7 @@
 		270E3DAC1C27112C00C9A69E /* Error */ = {
 			isa = PBXGroup;
 			children = (
-				270E3DAD1C27113C00C9A69E /* ICATError.swift */,
+				270E3DAD1C27113C00C9A69E /* AppError.swift */,
 			);
 			name = Error;
 			sourceTree = "<group>";
@@ -682,33 +682,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0752CE041C28008900C75ACB /* ICATRegisteredAccountTranslater.swift in Sources */,
-				0752CE0B1C28328600C75ACB /* ICATTimelineEntity.swift in Sources */,
-				270E3DA01C26DB6900C9A69E /* ICATLoginAccountPresenter.swift in Sources */,
+				0752CE041C28008900C75ACB /* RegisteredAccountTranslater.swift in Sources */,
+				0752CE0B1C28328600C75ACB /* TimelineEntity.swift in Sources */,
+				270E3DA01C26DB6900C9A69E /* LoginAccountPresenter.swift in Sources */,
 				276CCD0C1DD884FC0089648C /* TimelineBuilder.swift in Sources */,
 				276CCD061DD8456F0089648C /* TimelineWireframe.swift in Sources */,
-				270E3DB01C271EB100C9A69E /* ICATRegisteredAccountsModel.swift in Sources */,
-				270E3D911C26DA3D00C9A69E /* ICATTimelineViewController.swift in Sources */,
-				0752CE001C27987300C75ACB /* ICATLoginAccountDataStore.swift in Sources */,
-				0752CE171C28EF9E00C75ACB /* ICATRestSLRequest.swift in Sources */,
-				270E3D991C26DAEE00C9A69E /* ICATTimelineDataStore.swift in Sources */,
-				0752CE0F1C283EAB00C75ACB /* ICATTimelineModel.swift in Sources */,
-				0752CE091C28266D00C75ACB /* ICATTimelineUseCase.swift in Sources */,
-				270E3DA21C26DB7500C9A69E /* ICATLoginAccountRepository.swift in Sources */,
+				270E3DB01C271EB100C9A69E /* RegisteredAccountsModel.swift in Sources */,
+				270E3D911C26DA3D00C9A69E /* TimelineViewController.swift in Sources */,
+				0752CE001C27987300C75ACB /* LoginAccountDataStore.swift in Sources */,
+				0752CE171C28EF9E00C75ACB /* RestSLRequest.swift in Sources */,
+				270E3D991C26DAEE00C9A69E /* TimelineDataStore.swift in Sources */,
+				0752CE0F1C283EAB00C75ACB /* TimelineModel.swift in Sources */,
+				0752CE091C28266D00C75ACB /* TimelineUseCase.swift in Sources */,
+				270E3DA21C26DB7500C9A69E /* LoginAccountRepository.swift in Sources */,
 				276CCD081DD845C00089648C /* LoginAccountWireframe.swift in Sources */,
-				270E3D951C26DAC700C9A69E /* ICATTimelinePresenter.swift in Sources */,
-				270E3D971C26DAE000C9A69E /* ICATTimelineRepository.swift in Sources */,
-				270E3DB21C27291200C9A69E /* ICATLoginAccountViewCell.swift in Sources */,
-				0752CE0D1C283E0E00C75ACB /* ICATTimelineTranslater.swift in Sources */,
-				270E3DA41C26DB7E00C9A69E /* ICATSocialAccountDataStore.swift in Sources */,
-				0752CE111C28452B00C75ACB /* ICATTimelineViewCell.swift in Sources */,
+				270E3D951C26DAC700C9A69E /* TimelinePresenter.swift in Sources */,
+				270E3D971C26DAE000C9A69E /* TimelineRepository.swift in Sources */,
+				270E3DB21C27291200C9A69E /* LoginAccountViewCell.swift in Sources */,
+				0752CE0D1C283E0E00C75ACB /* TimelineTranslater.swift in Sources */,
+				270E3DA41C26DB7E00C9A69E /* SocialAccountDataStore.swift in Sources */,
+				0752CE111C28452B00C75ACB /* TimelineViewCell.swift in Sources */,
 				276CCD0A1DD863C70089648C /* LoginAccountBuilder.swift in Sources */,
-				270E3DAE1C27113C00C9A69E /* ICATError.swift in Sources */,
-				0752CDFC1C2791D700C75ACB /* ICATLoginAccountUseCase.swift in Sources */,
-				270E3D9E1C26DB5D00C9A69E /* ICATLoginAccountViewController.swift in Sources */,
+				270E3DAE1C27113C00C9A69E /* AppError.swift in Sources */,
+				0752CDFC1C2791D700C75ACB /* LoginAccountUseCase.swift in Sources */,
+				270E3D9E1C26DB5D00C9A69E /* LoginAccountViewController.swift in Sources */,
 				270E3D631C26D9FC00C9A69E /* AppDelegate.swift in Sources */,
 				276CCD011DD7E04D0089648C /* Translator.swift in Sources */,
-				0752CE021C279A6400C75ACB /* ICATSocialAccountRepository.swift in Sources */,
+				0752CE021C279A6400C75ACB /* SocialAccountRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

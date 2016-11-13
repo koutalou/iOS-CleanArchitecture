@@ -1,5 +1,5 @@
 //
-//  ICATLoginAccountViewController.swift
+//  LoginAccountViewController.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/20.
@@ -8,22 +8,22 @@
 
 import UIKit
 
-protocol ICATLoginAccountViewInput: class {
-    func setAccountsModel(_: ICATRegisteredAccountsModel)
-    func changedStatus(_: ICATLoginAccountStatus)
+protocol LoginAccountViewInput: class {
+    func setAccountsModel(_: RegisteredAccountsModel)
+    func changedStatus(_: LoginAccountStatus)
 }
 
-class ICATLoginAccountViewController: UIViewController {
+class LoginAccountViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerLabel: UILabel!
     
     var wireframe: LoginAccountWireframe?
-    var presenter: ICATLoginAccountPresenter?
-    var twitterAccountsModel: ICATRegisteredAccountsModel?
-    var accountStatus: ICATLoginAccountStatus = .none
+    var presenter: LoginAccountPresenter?
+    var twitterAccountsModel: RegisteredAccountsModel?
+    var accountStatus: LoginAccountStatus = .none
 
-    public func inject(presenter: ICATLoginAccountPresenter, wireframe: LoginAccountWireframe) {
+    public func inject(presenter: LoginAccountPresenter, wireframe: LoginAccountWireframe) {
         self.presenter = presenter
         self.wireframe = wireframe
     }
@@ -33,14 +33,14 @@ class ICATLoginAccountViewController: UIViewController {
     }
 }
 
-// MARK: ICATLoginUserView
-extension ICATLoginAccountViewController: ICATLoginAccountViewInput {
-    func setAccountsModel(_ accountsModel: ICATRegisteredAccountsModel) {
+// MARK: LoginUserView
+extension LoginAccountViewController: LoginAccountViewInput {
+    func setAccountsModel(_ accountsModel: RegisteredAccountsModel) {
         twitterAccountsModel = accountsModel
         self.tableView.reloadData()
     }
     
-    func changedStatus(_ status: ICATLoginAccountStatus) {
+    func changedStatus(_ status: LoginAccountStatus) {
         switch status {
         case .normal:
             footerLabel.text = "Select use account"
@@ -55,7 +55,7 @@ extension ICATLoginAccountViewController: ICATLoginAccountViewInput {
 }
 
 // MARK: UIButton
-extension ICATLoginAccountViewController {
+extension LoginAccountViewController {
     @IBAction func tapCancel(_ sender: UIBarButtonItem) {
         presenter?.tapCancel()
     }
@@ -67,7 +67,7 @@ extension ICATLoginAccountViewController {
 }
 
 // MARK: Table view data source
-extension ICATLoginAccountViewController: UITableViewDelegate, UITableViewDataSource {
+extension LoginAccountViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -77,9 +77,9 @@ extension ICATLoginAccountViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LoginAccountCell", for: indexPath) as! ICATLoginAccountViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LoginAccountCell", for: indexPath) as! LoginAccountViewCell
         
-        let account: ICATRegisteredAccountModel = twitterAccountsModel!.accounts[indexPath.row]
+        let account: RegisteredAccountModel = twitterAccountsModel!.accounts[indexPath.row]
         cell.updateCell(account)
         
         return cell

@@ -48,10 +48,6 @@ extension TimelineViewController: TimelineViewInput {
     
     func changedStatus(_ status: TimelineStatus) {
         timelineStatus = status
-        if (status == .notAuthorized) {
-            performSegue(withIdentifier: "LoginAccount", sender: nil)
-        }
-        
         self.tableView.reloadData()
     }
 }

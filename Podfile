@@ -7,10 +7,8 @@ use_frameworks!
 target 'iOSCleanArchitectureTwitterSample' do
 
 pod 'RealmSwift'
-pod 'SDWebImage'
-#pod 'SwiftTask'
+pod 'Kingfisher'
 pod 'ObjectMapper'
-pod 'Himotoki'
 pod 'RxSwift'
 pod 'RxCocoa'
 

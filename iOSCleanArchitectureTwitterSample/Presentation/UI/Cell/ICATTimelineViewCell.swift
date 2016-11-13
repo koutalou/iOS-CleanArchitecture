@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SDWebImage
+import Kingfisher
 
 class ICATTimelineViewCell: UITableViewCell {
     
@@ -21,7 +21,7 @@ class ICATTimelineViewCell: UITableViewCell {
         self.name.text = "@" + timelineModel.screenName
         self.displayName.text = timelineModel.name
         self.tweet.text = timelineModel.tweet
-        self.profileImageView.sd_setImage(with: URL(string: timelineModel.profileUrl))
+        self.profileImageView.kf.setImage(with: URL(string: timelineModel.profileUrl))
     }
     
     func isSelected(_ isSelected: Bool) {

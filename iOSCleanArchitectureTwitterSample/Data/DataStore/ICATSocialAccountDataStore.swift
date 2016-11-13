@@ -11,7 +11,13 @@ import UIKit
 import RxSwift
 import Accounts
 
-class ICATSocialAccountDataStore: NSObject {
+// MARK: - Interface
+public protocol ICATSocialAccountDataStore {
+    func getTwitterAccounts() -> Observable<[ACAccount]>
+}
+
+// MARK: - Implementation
+struct ICATSocialAccountDataStoreImpl: ICATSocialAccountDataStore {
     
     func getTwitterAccounts() -> Observable<[ACAccount]> {
         let accountStore = ACAccountStore()

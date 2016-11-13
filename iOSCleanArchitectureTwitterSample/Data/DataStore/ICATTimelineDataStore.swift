@@ -10,7 +10,13 @@ import Foundation
 import RxSwift
 import Accounts
 
-class ICATTimelineDataStore: NSObject {
+// MARK: - Interface
+public protocol ICATTimelineDataStore {
+    func getTimelines(_ account: ACAccount) -> Observable<[ICATTimelineEntity]>
+}
+
+// MARK: - Implementation
+class ICATTimelineDataStoreImpl: ICATTimelineDataStore {
     let request: ICATRestSLRequest = ICATRestSLRequest()
     
     func getTimelines(_ account: ACAccount) -> Observable<[ICATTimelineEntity]> {

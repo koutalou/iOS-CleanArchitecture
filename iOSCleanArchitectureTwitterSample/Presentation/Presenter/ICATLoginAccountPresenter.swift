@@ -17,16 +17,30 @@ enum ICATLoginAccountStatus {
     case error
 }
 
-class ICATLoginAccountPresenter {
+protocol ICATLoginAccountPresenter {
+    func loadAccounts()
+    func selectAccount(_ index: Int)
+    func tapCancel()
+    func tapReload()
+}
+
+class ICATLoginAccountPresenterImpl: ICATLoginAccountPresenter {
     
     weak var viewInput: ICATLoginAccountViewInput?
+    weak var wireframe: LoginAccountWireframe?
     var accountsModel: ICATRegisteredAccountsModel?
-    var usecase: ICATLoginAccountUseCase = ICATLoginAccountUseCase()
+    var useCase: ICATLoginAccountUseCase
     
     private let disposeBag = DisposeBag()
     
+    public required init(useCase: ICATLoginAccountUseCase, viewInput: ICATLoginAccountViewInput, wireframe: LoginAccountWireframe) {
+        self.useCase = useCase
+        self.viewInput = viewInput
+        self.wireframe = wireframe
+    }
+    
     func loadAccounts() {
-        usecase.loadAccounts()
+        useCase.loadAccounts()
             .subscribe(
                 onNext: { [weak self] accounts in
                     self?.loadedAccountsModel(accounts: accounts)
@@ -43,7 +57,7 @@ class ICATLoginAccountPresenter {
         }
         let selectAccount: ICATRegisteredAccountModel = accountsModel.accounts[index]
         
-        usecase.selectAccount(selectAccount)
+        useCase.selectAccount(selectAccount)
             .subscribe(
                 onNext: { [weak self] accounts in
                     self?.selectedAccount()
@@ -53,7 +67,19 @@ class ICATLoginAccountPresenter {
             .addDisposableTo(disposeBag)
     }
     
-    private func loadedAccountsModel(accounts: ICATRegisteredAccountsModel) {
+    func tapCancel() {
+        wireframe?.closeView()
+    }
+    
+    func tapReload() {
+        loadAccounts()
+    }
+}
+
+// MARK: Private
+extension ICATLoginAccountPresenterImpl {
+
+    fileprivate func loadedAccountsModel(accounts: ICATRegisteredAccountsModel) {
         DispatchQueue.main.async { [weak self] in
             self?.accountsModel = accounts
             self?.viewInput?.setAccountsModel(accounts)
@@ -62,13 +88,13 @@ class ICATLoginAccountPresenter {
         }
     }
     
-    private func selectedAccount() {
+    fileprivate func selectedAccount() {
         DispatchQueue.main.async { [weak self] in
-            self?.viewInput?.closeView()
+            self?.wireframe?.closeView()
         }
     }
     
-    private func errorHandling(error: Error) {
+    fileprivate func errorHandling(error: Error) {
         DispatchQueue.main.async { [weak self] in
             guard let error = error as? ICATError else {
                 self?.viewInput?.changedStatus(ICATLoginAccountStatus.error)

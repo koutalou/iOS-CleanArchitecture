@@ -17,15 +17,27 @@ enum ICATTimelineStatus {
     case error
 }
 
-class ICATTimelinePresenter {
+protocol ICATTimelinePresenter {
+    func loadTimelines()
+    func tapPersonButton()
+}
+
+class ICATTimelinePresenterImpl: ICATTimelinePresenter {
     
     weak var viewInput: ICATTimelineViewInput?
-    var usecase: ICATTimelineUseCase = ICATTimelineUseCase()
+    var wireframe: TimelineWireframe?
+    var useCase: ICATTimelineUseCase
     
     private let disposeBag = DisposeBag()
 
+    public required init(useCase: ICATTimelineUseCase, viewInput: ICATTimelineViewInput, wireframe: TimelineWireframe) {
+        self.useCase = useCase
+        self.viewInput = viewInput
+        self.wireframe = wireframe
+    }
+    
     func loadTimelines() {
-        usecase.loadTimelines()
+        useCase.loadTimelines()
             .subscribe(
                 onNext: { [weak self] timelines in
                     self?.loadedTimelinesModel(timelines: timelines)
@@ -37,7 +49,14 @@ class ICATTimelinePresenter {
         viewInput?.changedStatus(ICATTimelineStatus.loading)
     }
     
-    private func loadedTimelinesModel(timelines: ICATTimelinesModel) {
+    func tapPersonButton() {
+        wireframe?.showLogin()
+    }
+}
+
+// MARK: Private
+extension ICATTimelinePresenterImpl {
+    fileprivate func loadedTimelinesModel(timelines: ICATTimelinesModel) {
         DispatchQueue.main.async { [weak self] in
             self?.viewInput?.setTimelinesModel(timelines)
             let isNoData: Bool = timelines.timelines.count == 0
@@ -45,7 +64,7 @@ class ICATTimelinePresenter {
         }
     }
     
-    private func errorHandling(error: Error) {
+    fileprivate func errorHandling(error: Error) {
         DispatchQueue.main.async { [weak self] in
             guard let error = error as? ICATError else {
                 self?.viewInput?.changedStatus(ICATTimelineStatus.error)
@@ -54,6 +73,7 @@ class ICATTimelinePresenter {
             switch error {
             case .notAuthorized:
                 self?.viewInput?.changedStatus(ICATTimelineStatus.notAuthorized)
+                self?.wireframe?.showLogin()
             default:
                 self?.viewInput?.changedStatus(ICATTimelineStatus.error)
             }

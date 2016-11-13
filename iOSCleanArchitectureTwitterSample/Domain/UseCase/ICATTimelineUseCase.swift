@@ -15,10 +15,16 @@ protocol ICATTimelineUseCaseOutput {
 }
 
 struct ICATTimelineUseCase: ICATTimelineUseCaseOutput {
-    let loginAccountRepository: ICATLoginAccountRepository = ICATLoginAccountRepository()
-    let socialAccountRepository: ICATSocialAccountRepository = ICATSocialAccountRepository()
-    let timelineRepository: ICATTimelineRepository = ICATTimelineRepository()
+    private let loginAccountRepository: ICATLoginAccountRepository
+    private let socialAccountRepository: ICATSocialAccountRepository
+    private let timelineRepository: ICATTimelineRepository
 
+    public init(loginAccountRepository: ICATLoginAccountRepository, socialAccountRepository: ICATSocialAccountRepository, timelineRepository: ICATTimelineRepository) {
+        self.loginAccountRepository = loginAccountRepository
+        self.socialAccountRepository = socialAccountRepository
+        self.timelineRepository = timelineRepository
+    }
+    
     func loadTimelines() -> Observable<ICATTimelinesModel> {
         let login = loginAccountRepository.getSelectedTwitterAccountTask()
         let accounts = socialAccountRepository.getTwitterAccountsTask()

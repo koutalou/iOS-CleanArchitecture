@@ -14,7 +14,6 @@ import ObjectMapper
 import RealmSwift
 
 struct Context: MapContext {
-    var importantMappingInfo = "Info that I need during mapping"
 }
 
 class ICATRestSLRequest: NSObject {

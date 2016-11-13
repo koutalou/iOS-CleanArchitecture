@@ -11,25 +11,30 @@ import UIKit
 protocol ICATLoginAccountViewInput: class {
     func setAccountsModel(_: ICATRegisteredAccountsModel)
     func changedStatus(_: ICATLoginAccountStatus)
-    func closeView()
 }
 
-class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInput, UITableViewDelegate, UITableViewDataSource {
+class ICATLoginAccountViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerLabel: UILabel!
     
-    var presenter: ICATLoginAccountPresenter = ICATLoginAccountPresenter()
+    var wireframe: LoginAccountWireframe?
+    var presenter: ICATLoginAccountPresenter?
     var twitterAccountsModel: ICATRegisteredAccountsModel?
     var accountStatus: ICATLoginAccountStatus = .none
 
-    override func viewDidLoad() {
-        presenter.viewInput = self
-        presenter.loadAccounts()
+    public func inject(presenter: ICATLoginAccountPresenter, wireframe: LoginAccountWireframe) {
+        self.presenter = presenter
+        self.wireframe = wireframe
     }
     
-    // MARK: ICATLoginUserView
-    
+    override func viewDidLoad() {
+        presenter?.loadAccounts()
+    }
+}
+
+// MARK: ICATLoginUserView
+extension ICATLoginAccountViewController: ICATLoginAccountViewInput {
     func setAccountsModel(_ accountsModel: ICATRegisteredAccountsModel) {
         twitterAccountsModel = accountsModel
         self.tableView.reloadData()
@@ -47,12 +52,22 @@ class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInpu
             footerLabel.text = "No twitter user"
         }
     }
-    
-    func closeView() {
-        self.dismiss(animated: true, completion: nil)
+}
+
+// MARK: UIButton
+extension ICATLoginAccountViewController {
+    @IBAction func tapCancel(_ sender: UIBarButtonItem) {
+        presenter?.tapCancel()
     }
     
-    // MARK: Table view data source
+    @IBAction func tapReload(_ sender: UIBarButtonItem) {
+        // Reload accounts
+        presenter?.tapReload()
+    }
+}
+
+// MARK: Table view data source
+extension ICATLoginAccountViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -71,17 +86,6 @@ class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInpu
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.selectAccount(indexPath.row)
+        presenter?.selectAccount(indexPath.row)
     }
-    
-    // MARK: UIButton
-    @IBAction func tapCancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func tapReload(_ sender: UIBarButtonItem) {
-        // Reload accounts
-        presenter.loadAccounts()
-    }
-    
 }

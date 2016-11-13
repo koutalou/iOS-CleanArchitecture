@@ -10,17 +10,21 @@ import Foundation
 import RxSwift
 import Accounts
 
-protocol ICATLoginAccountUseCaseOutput: class {
-    func loadTwitterAccounts() -> Observable<ICATRegisteredAccountsModel>
+protocol ICATLoginAccountUseCase {
+    func loadAccounts() -> Observable<ICATRegisteredAccountsModel>
     func selectAccount(_ account: ICATRegisteredAccountModel) -> Observable<Void>
 }
 
-class ICATLoginAccountUseCase: NSObject {
-    weak var output: ICATLoginAccountUseCaseOutput?
-    lazy var loginAccountRepository: ICATLoginAccountRepository = ICATLoginAccountRepository()
-    lazy var socialAccountRepository: ICATSocialAccountRepository = ICATSocialAccountRepository()
+struct ICATLoginAccountUseCaseImpl: ICATLoginAccountUseCase {
+    private let loginAccountRepository: ICATLoginAccountRepository
+    private let socialAccountRepository: ICATSocialAccountRepository
     
     var acAccounts: [ACAccount] = []
+    
+    public init(loginAccountRepository: ICATLoginAccountRepository, socialAccountRepository: ICATSocialAccountRepository) {
+        self.loginAccountRepository = loginAccountRepository
+        self.socialAccountRepository = socialAccountRepository
+    }
     
     func loadAccounts() -> Observable<ICATRegisteredAccountsModel> {
         let login = loginAccountRepository.getSelectedTwitterAccountTask()
@@ -28,16 +32,18 @@ class ICATLoginAccountUseCase: NSObject {
         
         return Observable.combineLatest(accounts, login) { ($0, $1) }
             .flatMap { (accounts, identifier) -> Observable<ICATRegisteredAccountsModel> in
-                self.acAccounts = accounts
                 return Observable.just((accounts, identifier))
                     .map(translator: ICATRegisteredAccountTranslater())
         }
     }
     
     func selectAccount(_ account: ICATRegisteredAccountModel) -> Observable<Void> {
-        guard let acAccount = acAccounts.filter({ $0.identifier.isEqual(to: account.identifier)}).first else {
-            return Observable.error(ICATError.generic)
+        return socialAccountRepository.getTwitterAccountsTask()
+            .flatMap { accounts -> Observable<Void> in
+                guard let acAccount = accounts.filter({ $0.identifier.isEqual(to: account.identifier)}).first else {
+                    return Observable.error(ICATError.generic)
+                }
+                return self.loginAccountRepository.updateSelecteTwitterAccountTask(acAccount)
         }
-        return loginAccountRepository.updateSelecteTwitterAccountTask(acAccount)
     }
 }

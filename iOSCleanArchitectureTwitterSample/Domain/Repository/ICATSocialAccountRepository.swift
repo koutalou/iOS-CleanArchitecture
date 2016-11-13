@@ -10,10 +10,20 @@ import Foundation
 import RxSwift
 import Accounts
 
-class ICATSocialAccountRepository: NSObject {
-    lazy var dataStore: ICATSocialAccountDataStore = ICATSocialAccountDataStore()
+// MARK: - Interface
+public protocol ICATSocialAccountRepository {
+    func getTwitterAccountsTask() -> Observable<[ACAccount]>
+}
 
-    func getTwitterAccountsTask() -> Observable<[ACAccount]> {//Task<Void, Array<ACAccount>?, ICATError> {
+// MARK: - Implementation
+struct ICATSocialAccountRepositoryImpl: ICATSocialAccountRepository {
+    private let dataStore: ICATSocialAccountDataStore
+    
+    public init(dataStore: ICATSocialAccountDataStore) {
+        self.dataStore = dataStore
+    }
+    
+    func getTwitterAccountsTask() -> Observable<[ACAccount]> {
         return dataStore.getTwitterAccounts()
     }
 }

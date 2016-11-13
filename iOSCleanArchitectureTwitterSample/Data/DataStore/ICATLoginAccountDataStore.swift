@@ -10,7 +10,15 @@ import Foundation
 import RxSwift
 import Accounts
 
-class ICATLoginAccountDataStore: NSObject {
+// MARK: - Interface
+public protocol ICATLoginAccountDataStore {
+    func getSelectedTwitterAccountId() -> Observable<String?>
+    func updateSelectedTwitterAccountId(_ account: ACAccount) -> Observable<Void>
+    func deleteSelectedTwitterAccountId() -> Observable<Void>
+}
+
+// MARK: - Implementation
+struct ICATLoginAccountDataStoreImpl: ICATLoginAccountDataStore {
     let ICAT_LOGIN_USER_ID: String = "ICAT_LOGIN_USER_ID"
     
     func getSelectedTwitterAccountId() -> Observable<String?> {

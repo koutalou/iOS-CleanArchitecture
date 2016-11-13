@@ -13,14 +13,20 @@ protocol ICATTimelineViewInput: class {
     func changedStatus(_: ICATTimelineStatus) -> Void
 }
 
-class ICATTimelineViewController: UIViewController, ICATTimelineViewInput, UITableViewDelegate, UITableViewDataSource {
+class ICATTimelineViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var presenter: ICATTimelinePresenter = ICATTimelinePresenter()
+    private weak var wireframe: TimelineWireframe?
+    var presenter: ICATTimelinePresenter?
     var timelines: Array<ICATTimelineModel>?
     var timelineStatus:ICATTimelineStatus = .loading
     
+    public func inject(presenter: ICATTimelinePresenter, wireframe: TimelineWireframe) {
+        self.presenter = presenter
+        self.wireframe = wireframe
+    }
+
     override func viewDidLoad() {
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -29,12 +35,12 @@ class ICATTimelineViewController: UIViewController, ICATTimelineViewInput, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter.viewInput = self
-        presenter.loadTimelines()
+        presenter?.loadTimelines()
     }
-    
-    // MARK: ICATTimelineViewInput
-    
+}
+
+// MARK: ICATTimelineViewInput
+extension ICATTimelineViewController: ICATTimelineViewInput {
     func setTimelinesModel(_ timelinesModel: ICATTimelinesModel) {
         timelines = timelinesModel.timelines
         self.tableView.reloadData()
@@ -48,8 +54,17 @@ class ICATTimelineViewController: UIViewController, ICATTimelineViewInput, UITab
         
         self.tableView.reloadData()
     }
-    
-    // MARK: Table view data source
+}
+
+// MARK: Button Event
+extension ICATTimelineViewController {
+    @IBAction func tapPersonButton(_ sender: Any) {
+        presenter?.tapPersonButton()
+    }
+}
+
+// MARK: Table view data source
+extension ICATTimelineViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

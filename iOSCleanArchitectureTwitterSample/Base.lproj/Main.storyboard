@@ -12,7 +12,7 @@
         <!--Timeline-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ICATTimelineViewController" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Timeline" id="BYZ-38-t0r" customClass="ICATTimelineViewController" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -194,7 +194,7 @@
                     <navigationItem key="navigationItem" title="Timeline" id="tuM-Ax-P9V">
                         <barButtonItem key="rightBarButtonItem" image="ic_perm_identity" style="plain" id="H0F-ny-IPv">
                             <connections>
-                                <segue destination="Iel-B0-eKK" kind="presentation" id="FLs-jC-ozO"/>
+                                <action selector="tapPersonButton:" destination="BYZ-38-t0r" id="ZXz-hG-Slh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -210,7 +210,7 @@
         <!--Login User-->
         <scene sceneID="Arq-eL-M0v">
             <objects>
-                <viewController id="kNL-PA-2AG" customClass="ICATLoginAccountViewController" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="kNL-PA-2AG" customClass="ICATLoginAccountViewController" customModule="iOSCleanArchitectureTwitterSample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RwX-rs-QWX"/>
                         <viewControllerLayoutGuide type="bottom" id="2oN-oN-Gsu"/>
@@ -355,7 +355,4 @@
     <resources>
         <image name="ic_perm_identity" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="MRy-9b-fHu"/>
-    </inferredMetricsTieBreakers>
 </document>

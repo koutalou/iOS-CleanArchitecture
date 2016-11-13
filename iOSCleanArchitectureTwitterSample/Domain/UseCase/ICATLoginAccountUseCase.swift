@@ -7,13 +7,12 @@
 //
 
 import Foundation
-import SwiftTask
+import RxSwift
 import Accounts
 
 protocol ICATLoginAccountUseCaseOutput: class {
-    func loadTwitterAccounts(_ accountModel: ICATRegisteredAccountsModel)
-    func loadTwitterAccountsErorr(_ error:ICATError)
-    func resultSelectAccount(_ isSuccess: Bool)
+    func loadTwitterAccounts() -> Observable<ICATRegisteredAccountsModel>
+    func selectAccount(_ account: ICATRegisteredAccountModel) -> Observable<Void>
 }
 
 class ICATLoginAccountUseCase: NSObject {
@@ -21,36 +20,24 @@ class ICATLoginAccountUseCase: NSObject {
     lazy var loginAccountRepository: ICATLoginAccountRepository = ICATLoginAccountRepository()
     lazy var socialAccountRepository: ICATSocialAccountRepository = ICATSocialAccountRepository()
     
-    var acAccounts: Array<ACAccount>! = nil
+    var acAccounts: [ACAccount] = []
     
-    func loadAccounts() {
-        var twitterAccountIdentifier: String?
+    func loadAccounts() -> Observable<ICATRegisteredAccountsModel> {
+        let login = loginAccountRepository.getSelectedTwitterAccountTask()
+        let accounts = socialAccountRepository.getTwitterAccountsTask()
         
-        loginAccountRepository.getSelectedTwitterAccountTask().success { (identifier) -> Task<Void, Array<ACAccount>?, ICATError> in
-            twitterAccountIdentifier = identifier
-            return self.socialAccountRepository.getTwitterAccountsTask()
-        }
-        .success { (accounts) -> Void in
-            self.acAccounts = accounts!
-            let registeredAccountsModel = ICATRegisteredAccountTranslater.generateRegisteredAccount(accounts!, selectedIdentifier: twitterAccountIdentifier)
-            self.output?.loadTwitterAccounts(registeredAccountsModel)
-        }
-        .failure { (error, isCancelled) -> Void in
-            self.output?.loadTwitterAccountsErorr(error ?? ICATError.generic)
+        return Observable.combineLatest(accounts, login) { ($0, $1) }
+            .flatMap { (accounts, identifier) -> Observable<ICATRegisteredAccountsModel> in
+                self.acAccounts = accounts
+                return Observable.just((accounts, identifier))
+                    .map(translator: ICATRegisteredAccountTranslater())
         }
     }
     
-    func selectAccount(_ account: ICATRegisteredAccountModel) {
-        guard let acAccount = acAccounts.filter({ $0.identifier == account.identifier}).first else {
-            output?.resultSelectAccount(false)
-            return
+    func selectAccount(_ account: ICATRegisteredAccountModel) -> Observable<Void> {
+        guard let acAccount = acAccounts.filter({ $0.identifier.isEqual(to: account.identifier)}).first else {
+            return Observable.error(ICATError.generic)
         }
-        
-        loginAccountRepository.updateSelecteTwitterAccountTask(acAccount).success {
-            self.output?.resultSelectAccount(true)
-        }
-        .failure { _,_ in
-            self.output?.resultSelectAccount(false)
-        }
+        return loginAccountRepository.updateSelecteTwitterAccountTask(acAccount)
     }
 }

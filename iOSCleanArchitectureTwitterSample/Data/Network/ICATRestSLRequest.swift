@@ -9,57 +9,49 @@
 import Foundation
 import Accounts
 import Social
+import RxSwift
 import ObjectMapper
 import RealmSwift
 
+struct Context: MapContext {
+    var importantMappingInfo = "Info that I need during mapping"
+}
+
 class ICATRestSLRequest: NSObject {
 
-    /*
-     * TODO: Need to support pagenation
-     * Add @params parameters: NSDictionary
-     */
-    func getTimeline(_ account: ACAccount, callback: @escaping (Array<ICATTimelineEntity>?, ICATError) -> Void) {
-        
-        let realm = try! Realm()
-        let preloadRowTimelineModels: Array<ICATTimelineEntity>? = realm.objects(ICATTimelineEntity) as? Array<ICATTimelineEntity>
-        if (preloadRowTimelineModels != nil && preloadRowTimelineModels!.count > 0) {
-            callback(preloadRowTimelineModels, ICATError.noError)
-        }
+    func getTimeline(_ account: ACAccount) -> Observable<[ICATTimelineEntity]> {
+//        let realm = try! Realm()
+//        let preloadRowTimelineModels: Array<ICATTimelineEntity>? = realm.objects(ICATTimelineEntity) as? Array<ICATTimelineEntity>
+//        if (preloadRowTimelineModels != nil && preloadRowTimelineModels!.count > 0) {
+//            callback(preloadRowTimelineModels, ICATError.noError)
+//        }
         
         let url: String = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         
         let request: SLRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, url: URL(string: url), parameters: nil)
         
         request.account = account
-        request.perform { (responseData, urlResponse, error) -> Void in
-            
-            let statusCode = urlResponse?.statusCode;
-            if (statusCode! < 200 || statusCode! >= 300) {
-                callback(nil, ICATError.network)
-                return
-            }
-            do {
-                let array = try JSONSerialization.jsonObject(with: responseData!,
-                    options: JSONSerialization.ReadingOptions.mutableContainers) as! NSArray
-                guard let rowTimelines:[ICATTimelineEntity] = Mapper<ICATTimelineEntity>().mapArray(array) else {
-                    // Can not convert
-                    callback(nil, ICATError.generic)
+        
+        return Observable.create({ (observer) -> Disposable in
+            request.perform(handler: { (responseData, urlResponse, error) in
+                guard
+                    let responseData = responseData,
+                    let optionalJsonResponse = try? JSONSerialization.jsonObject(with: responseData,
+                                                                           options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<[String: Any]>,
+                    let jsonResponse = optionalJsonResponse else {
+                    observer.onError(ICATError.generic)
                     return
                 }
                 
-                let realm = try! Realm()
-                try! realm.write {
-                    // Replace all objects when fetched 1st page
-                    realm.deleteAll()
-                    rowTimelines.forEach({ rowTimelineModel -> () in
-                        realm.add(rowTimelineModel)
-                    })
-                }
+                let context = Context()
+                let mapper = Mapper<ICATTimelineEntity>(context: context)
+                let rowTimelines = Array(mapper.mapSet(JSONArray: jsonResponse))
                 
-                callback(rowTimelines, ICATError.noError)
-            } catch {
-                callback(nil, ICATError.generic)
-            }
-        }
+                observer.onNext(rowTimelines)
+                observer.onCompleted()
+            })
+            
+            return Disposables.create()
+        })
     }
 }

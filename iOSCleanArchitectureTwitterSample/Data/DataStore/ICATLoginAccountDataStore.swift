@@ -7,25 +7,26 @@
 //
 
 import Foundation
+import RxSwift
 import Accounts
 
 class ICATLoginAccountDataStore: NSObject {
     let ICAT_LOGIN_USER_ID: String = "ICAT_LOGIN_USER_ID"
     
-    func getSelectedTwitterAccountId(_ callback: (String?, ICATError) -> Void) {
-        let identifier: String? = UserDefaults.standard.object(forKey: ICAT_LOGIN_USER_ID) as? String
-        callback(identifier, ICATError.noError)
+    func getSelectedTwitterAccountId() -> Observable<String?> {
+        let identifier = UserDefaults.standard.object(forKey: ICAT_LOGIN_USER_ID) as? String
+        return Observable.just(identifier)
     }
     
-    func updateSelectedTwitterAccountId(_ account: ACAccount, callback: (ICATError) -> Void) {
+    func updateSelectedTwitterAccountId(_ account: ACAccount) -> Observable<Void> {
         UserDefaults.standard.set(account.identifier, forKey: ICAT_LOGIN_USER_ID)
         UserDefaults.standard.synchronize()
-        callback(ICATError.noError)
+        return Observable.just()
     }
     
-    func deleteSelectedTwitterAccountId(_ callback: (ICATError) -> Void) {
+    func deleteSelectedTwitterAccountId() -> Observable<Void> {
         UserDefaults.standard.removeObject(forKey: ICAT_LOGIN_USER_ID)
         UserDefaults.standard.synchronize()
-        callback(ICATError.noError)
+        return Observable.just()
     }
 }

@@ -1,24 +1,35 @@
 PODS:
   - Himotoki (3.0.0)
-  - RxCocoa (2.6.0):
-    - RxSwift (~> 2.5)
-  - RxSwift (2.6.0)
+  - ObjectMapper (2.2.1)
+  - Realm (2.0.3):
+    - Realm/Headers (= 2.0.3)
+  - Realm/Headers (2.0.3)
+  - RealmSwift (2.0.3):
+    - Realm (= 2.0.3)
+  - RxCocoa (3.0.1):
+    - RxSwift (~> 3.0)
+  - RxSwift (3.0.1)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
   - Himotoki
+  - ObjectMapper
+  - RealmSwift
   - RxCocoa
   - RxSwift
   - SDWebImage
 
 SPEC CHECKSUMS:
   Himotoki: df74b01035e86e021b7b04a15b033a7fd189b84f
-  RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
-  RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
+  ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
+  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
+  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
+  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 581be3257e7c9645ecfd07c7e67eb3fd198e484c
+PODFILE CHECKSUM: 1dfd6228833089af758c2d956d472db2e2b9b93c
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

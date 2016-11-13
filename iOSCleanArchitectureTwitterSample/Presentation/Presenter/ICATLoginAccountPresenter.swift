@@ -7,31 +7,8 @@
 //
 
 import Foundation
+import RxSwift
 import Accounts
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l <= r
-  default:
-    return !(rhs < lhs)
-  }
-}
-
 
 enum ICATLoginAccountStatus {
     case none
@@ -40,52 +17,69 @@ enum ICATLoginAccountStatus {
     case error
 }
 
-class ICATLoginAccountPresenter: NSObject, ICATLoginAccountUseCaseOutput {
+class ICATLoginAccountPresenter {
     
     weak var viewInput: ICATLoginAccountViewInput?
     var accountsModel: ICATRegisteredAccountsModel?
     var usecase: ICATLoginAccountUseCase = ICATLoginAccountUseCase()
     
+    private let disposeBag = DisposeBag()
+    
     func loadAccounts() {
-        usecase.output = self
         usecase.loadAccounts()
+            .subscribe(
+                onNext: { [weak self] accounts in
+                    self?.loadedAccountsModel(accounts: accounts)
+                }, onError: { [weak self] error in
+                    self?.errorHandling(error: error)
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
     }
     
     func selectAccount(_ index: Int) {
-        if (accountsModel?.accounts.count <= index) {
-            // Error
+        guard let accountsModel = accountsModel else {
+            // Not loaded yet
             return
         }
+        let selectAccount: ICATRegisteredAccountModel = accountsModel.accounts[index]
         
-        let selectAccount: ICATRegisteredAccountModel = accountsModel!.accounts[index]
         usecase.selectAccount(selectAccount)
+            .subscribe(
+                onNext: { [weak self] accounts in
+                    self?.selectedAccount()
+                }, onError: { [weak self] error in
+                    self?.errorHandling(error: error)
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
     }
     
-    // MARK: ICATLoginAccountUseCaseOutput
-    
-    func loadTwitterAccounts(_ registeredAccountsModel: ICATRegisteredAccountsModel) {
-        accountsModel = registeredAccountsModel
-        DispatchQueue.main.async { [weak self]() -> Void in
-            self?.viewInput?.setAccountsModel(self!.accountsModel!)
-            let isNoData: Bool = self!.accountsModel!.accounts.count == 0
+    private func loadedAccountsModel(accounts: ICATRegisteredAccountsModel) {
+        DispatchQueue.main.async { [weak self] in
+            self?.accountsModel = accounts
+            self?.viewInput?.setAccountsModel(accounts)
+            let isNoData: Bool = accounts.accounts.count == 0
             self?.viewInput?.changedStatus(isNoData ? ICATLoginAccountStatus.none : ICATLoginAccountStatus.normal)
         }
     }
     
-    func loadTwitterAccountsErorr(_ error: ICATError) {
-        DispatchQueue.main.async { [weak self]() -> Void in
-            if (error == .notAuthorized) {
+    private func selectedAccount() {
+        DispatchQueue.main.async { [weak self] in
+            self?.viewInput?.closeView()
+        }
+    }
+    
+    private func errorHandling(error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            guard let error = error as? ICATError else {
+                self?.viewInput?.changedStatus(ICATLoginAccountStatus.error)
+                return
+            }
+            switch error {
+            case .notAuthorized:
                 self?.viewInput?.changedStatus(ICATLoginAccountStatus.notAuthorized)
-            } else {
+            default:
                 self?.viewInput?.changedStatus(ICATLoginAccountStatus.error)
             }
         }
     }
-    
-    func resultSelectAccount(_ isSuccess: Bool) {
-        DispatchQueue.main.async { [weak self]() -> Void in
-            self?.viewInput?.selectAccountResult(isSuccess)
-        }
-    }
-
 }

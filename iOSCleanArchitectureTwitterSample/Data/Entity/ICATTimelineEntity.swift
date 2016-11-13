@@ -15,11 +15,11 @@ class ICATTimelineEntity: Object,Mappable {
     dynamic var createdAt = ""
     dynamic var user: ICATUserEntity? = nil
     
-    required convenience init?(_ map: Map) {
+    required convenience init?(map: Map) {
         self.init()
     }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         text <- map["text"]
         createdAt <- map["created_at"]
         user <- map["user"]
@@ -31,11 +31,11 @@ class ICATUserEntity: Object, Mappable {
     dynamic var prifileUrl = ""
     dynamic var name = ""
     
-    required convenience init?(_ map: Map) {
+    required convenience init?(map: Map) {
         self.init()
     }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         screenName <- map["screen_name"]
         prifileUrl <- map["profile_image_url_https"]
         name <- map["name"]

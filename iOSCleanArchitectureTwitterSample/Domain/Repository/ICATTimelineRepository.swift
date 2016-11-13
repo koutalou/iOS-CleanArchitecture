@@ -7,22 +7,13 @@
 //
 
 import Foundation
-import SwiftTask
+import RxSwift
 import Accounts
 
 class ICATTimelineRepository: NSObject {
     lazy var dataStore: ICATTimelineDataStore = ICATTimelineDataStore()
 
-    func getTwitterTimelineTask(_ accoount: ACAccount) -> Task<Void, Array<ICATTimelineEntity>?, ICATError> {
-        return Task { _,fulfill, reject, configure in
-            self.dataStore.getTimelines(accoount, callback: { (timelines, error) -> Void in
-                if (error.isError) {
-                    reject(error)
-                    return
-                }
-                
-                fulfill(timelines)
-            })
-        }
+    func getTwitterTimelineTask(_ account: ACAccount) -> Observable<[ICATTimelineEntity]> {
+        return dataStore.getTimelines(account)
     }
 }

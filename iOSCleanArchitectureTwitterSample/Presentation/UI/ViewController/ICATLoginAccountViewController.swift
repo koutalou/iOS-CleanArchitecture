@@ -9,9 +9,9 @@
 import UIKit
 
 protocol ICATLoginAccountViewInput: class {
-    func setAccountsModel(_: ICATRegisteredAccountsModel) -> Void
-    func changedStatus(_: ICATLoginAccountStatus) -> Void
-    func selectAccountResult(_: Bool) -> Void
+    func setAccountsModel(_: ICATRegisteredAccountsModel)
+    func changedStatus(_: ICATLoginAccountStatus)
+    func closeView()
 }
 
 class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInput, UITableViewDelegate, UITableViewDataSource {
@@ -48,13 +48,8 @@ class ICATLoginAccountViewController: UIViewController, ICATLoginAccountViewInpu
         }
     }
     
-    func selectAccountResult(_ isSuccess: Bool) {
-        if (isSuccess) {
-            self.dismiss(animated: true, completion: nil)
-            return
-        }
-        
-        // Notify Error as necessary
+    func closeView() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: Table view data source

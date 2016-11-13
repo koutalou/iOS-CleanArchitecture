@@ -8,18 +8,17 @@
 
 import Foundation
 
-class ICATTimelinesModel: NSObject {
+struct ICATTimelinesModel {
     var timelines: [ICATTimelineModel] = []
 }
 
-class ICATTimelineModel: NSObject {
+struct ICATTimelineModel {
     var name: String = ""
     var screenName: String = ""
     var profileUrl: String = ""
     var tweet: String = ""
     
-    required init(rowTimelineModel: ICATTimelineEntity) {
-        super.init()
+    init(rowTimelineModel: ICATTimelineEntity) {
         name = rowTimelineModel.user?.name ?? ""
         screenName = rowTimelineModel.user?.screenName ?? ""
         profileUrl = rowTimelineModel.user?.prifileUrl ?? ""

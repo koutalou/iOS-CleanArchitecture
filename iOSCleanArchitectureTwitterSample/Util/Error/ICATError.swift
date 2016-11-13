@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ICATError {
+enum ICATError: Error {
     case noError
     case network
     case notAuthorized

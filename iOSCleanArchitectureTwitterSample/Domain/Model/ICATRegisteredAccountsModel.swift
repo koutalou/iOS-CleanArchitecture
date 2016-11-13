@@ -9,18 +9,17 @@
 import Foundation
 import Accounts
 
-class ICATRegisteredAccountsModel: NSObject {
+struct ICATRegisteredAccountsModel {
     var accounts: [ICATRegisteredAccountModel] = []
 }
 
-class ICATRegisteredAccountModel: NSObject {
+struct ICATRegisteredAccountModel {
     var name: String = ""
     var identifier: String = ""
     var id: Int = 0
     var isSelected: Bool = false
     
-    required init(account: ACAccount, index: Int) {
-        super.init()
+    init(account: ACAccount, index: Int) {
         name = account.username
         identifier = account.identifier as String? ?? ""
         id = index

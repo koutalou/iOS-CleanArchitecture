@@ -8,15 +8,16 @@
 
 import Foundation
 
-class ICATTimelineTranslater: NSObject {
+struct ICATTimelineTranslater: Translator {
+    typealias Input = [ICATTimelineEntity]
+    typealias Output = ICATTimelinesModel
     
-    class func generateTimelines(_ rowTimelines: Array<ICATTimelineEntity>) -> ICATTimelinesModel {
-        let timelinesModel: ICATTimelinesModel = ICATTimelinesModel()
-        rowTimelines.forEach { rowTimeline -> () in
+    func translate(_ entity: [ICATTimelineEntity]) throws -> ICATTimelinesModel {
+        var timelinesModel: ICATTimelinesModel = ICATTimelinesModel()
+        entity.forEach { rowTimeline -> () in
             let timelineModel = ICATTimelineModel(rowTimelineModel: rowTimeline)
             timelinesModel.timelines.append(timelineModel)
         }
-        
         return timelinesModel
     }
 }

@@ -36,6 +36,7 @@
 		270E3DAE1C27113C00C9A69E /* ICATError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DAD1C27113C00C9A69E /* ICATError.swift */; };
 		270E3DB01C271EB100C9A69E /* ICATRegisteredAccountsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DAF1C271EB100C9A69E /* ICATRegisteredAccountsModel.swift */; };
 		270E3DB21C27291200C9A69E /* ICATLoginAccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DB11C27291200C9A69E /* ICATLoginAccountViewCell.swift */; };
+		276CCD011DD7E04D0089648C /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CCD001DD7E04D0089648C /* Translator.swift */; };
 		584A9CC6CD3386C1B94AD534 /* Pods_iOSCleanArchitectureTwitterSampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3E91A768FBEEE702FF5F6C /* Pods_iOSCleanArchitectureTwitterSampleUITests.framework */; };
 		8EF531377FB6A97E3C9B49DE /* Pods_iOSCleanArchitectureTwitterSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49CE4E61BFE7FF396A1C494 /* Pods_iOSCleanArchitectureTwitterSampleTests.framework */; };
 		E4086BA8C37F12FEE0B00EC1 /* Pods_iOSCleanArchitectureTwitterSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CB8D56598FD8BF8E22F832 /* Pods_iOSCleanArchitectureTwitterSample.framework */; };
@@ -97,6 +98,7 @@
 		270E3DAD1C27113C00C9A69E /* ICATError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATError.swift; path = Util/Error/ICATError.swift; sourceTree = "<group>"; };
 		270E3DAF1C271EB100C9A69E /* ICATRegisteredAccountsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATRegisteredAccountsModel.swift; path = Domain/Model/ICATRegisteredAccountsModel.swift; sourceTree = "<group>"; };
 		270E3DB11C27291200C9A69E /* ICATLoginAccountViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICATLoginAccountViewCell.swift; path = Presentation/UI/Cell/ICATLoginAccountViewCell.swift; sourceTree = "<group>"; };
+		276CCD001DD7E04D0089648C /* Translator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Translator.swift; path = Domain/UseCase/Translater/Translator.swift; sourceTree = "<group>"; };
 		4B61D37FA9D756790694A8FC /* Pods-iOSCleanArchitectureTwitterSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSCleanArchitectureTwitterSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSCleanArchitectureTwitterSample/Pods-iOSCleanArchitectureTwitterSample.debug.xcconfig"; sourceTree = "<group>"; };
 		8B51EA7EF86D54C8F36755EB /* Pods-iOSCleanArchitectureTwitterSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSCleanArchitectureTwitterSampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSCleanArchitectureTwitterSampleTests/Pods-iOSCleanArchitectureTwitterSampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		A49CE4E61BFE7FF396A1C494 /* Pods_iOSCleanArchitectureTwitterSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSCleanArchitectureTwitterSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +270,7 @@
 			children = (
 				0752CE031C28008900C75ACB /* ICATRegisteredAccountTranslater.swift */,
 				0752CE0C1C283E0E00C75ACB /* ICATTimelineTranslater.swift */,
+				276CCD001DD7E04D0089648C /* Translator.swift */,
 			);
 			name = Translater;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				270E3D7B1C26D9FC00C9A69E /* Frameworks */,
 				270E3D7C1C26D9FC00C9A69E /* Resources */,
 				DB7C536F7BEFCBED8F9DA4BA /* [CP] Copy Pods Resources */,
+				9AD21DAF246ADC4E5877E6FA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -530,6 +534,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSCleanArchitectureTwitterSampleTests/Pods-iOSCleanArchitectureTwitterSampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9AD21DAF246ADC4E5877E6FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSCleanArchitectureTwitterSampleUITests/Pods-iOSCleanArchitectureTwitterSampleUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A774C936F7630F7266F48B0E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -542,7 +561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		A9F5A5F468279B4C3869B22C /* [CP] Copy Pods Resources */ = {
@@ -587,7 +606,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D6DC692175C67E81377EF43C /* [CP] Check Pods Manifest.lock */ = {
@@ -602,7 +621,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DB7C536F7BEFCBED8F9DA4BA /* [CP] Copy Pods Resources */ = {
@@ -648,6 +667,7 @@
 				0752CDFC1C2791D700C75ACB /* ICATLoginAccountUseCase.swift in Sources */,
 				270E3D9E1C26DB5D00C9A69E /* ICATLoginAccountViewController.swift in Sources */,
 				270E3D631C26D9FC00C9A69E /* AppDelegate.swift in Sources */,
+				276CCD011DD7E04D0089648C /* Translator.swift in Sources */,
 				0752CE021C279A6400C75ACB /* ICATSocialAccountRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

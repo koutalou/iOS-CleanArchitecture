@@ -9,13 +9,15 @@
 import Foundation
 import Accounts
 
-class ICATRegisteredAccountTranslater: NSObject {
+struct ICATRegisteredAccountTranslater: Translator {
+    typealias Input = (accounts: [ACAccount], selectedIdentifier: String?)
+    typealias Output = ICATRegisteredAccountsModel
     
-    class func generateRegisteredAccount(_ accounts: Array<ACAccount>, selectedIdentifier: String?) -> ICATRegisteredAccountsModel {
-        let registeredAccountsModel: ICATRegisteredAccountsModel = ICATRegisteredAccountsModel()
-        accounts.enumerated().forEach({ (index: Int, account: ACAccount) -> () in
-            let registeredAccountModel = ICATRegisteredAccountModel(account: account, index: index)
-            registeredAccountModel.isSelected = registeredAccountModel.identifier == selectedIdentifier
+    func translate(_ entity: (accounts: [ACAccount], selectedIdentifier: String?)) throws -> ICATRegisteredAccountsModel {
+        var registeredAccountsModel: ICATRegisteredAccountsModel = ICATRegisteredAccountsModel()
+        entity.accounts.enumerated().forEach({ (index: Int, account: ACAccount) -> () in
+            var registeredAccountModel = ICATRegisteredAccountModel(account: account, index: index)
+            registeredAccountModel.isSelected = registeredAccountModel.identifier == entity.selectedIdentifier
             registeredAccountsModel.accounts.append(registeredAccountModel)
         })
         

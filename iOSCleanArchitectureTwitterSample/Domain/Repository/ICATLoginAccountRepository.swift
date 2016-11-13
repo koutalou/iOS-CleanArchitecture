@@ -7,48 +7,22 @@
 //
 
 import Foundation
-import SwiftTask
+import RxSwift
 import Accounts
 
 class ICATLoginAccountRepository: NSObject {
     lazy var dataStore: ICATLoginAccountDataStore = ICATLoginAccountDataStore()
     
-    func getSelectedTwitterAccountTask() -> Task<Void, String?, ICATError> {
-        return Task { _,fulfill, reject, configure in
-            self.dataStore.getSelectedTwitterAccountId({ (accountIdentifier, error) -> Void in
-                if (error.isError) {
-                    reject(error)
-                    return
-                }
-                
-                fulfill(accountIdentifier)
-            })
-        }
+    func getSelectedTwitterAccountTask() -> Observable<String?> {//Task<Void, String?, ICATError> {
+        return dataStore.getSelectedTwitterAccountId()
     }
     
-    func updateSelecteTwitterAccountTask(_ account: ACAccount) -> Task<Void, Void, ICATError> {
-        return Task { _,fulfill, reject, configure in
-            self.dataStore.updateSelectedTwitterAccountId(account, callback: { (error) -> Void in
-                if (error.isError) {
-                    reject(error)
-                    return
-                }
-                
-                fulfill()
-            })
-        }
+    func updateSelecteTwitterAccountTask(_ account: ACAccount) -> Observable<Void> {
+        return dataStore.updateSelectedTwitterAccountId(account)
+
     }
     
-    func deleteTwitterAccount() -> Task<Void, Void, ICATError> {
-        return Task { _,fulfill, reject, configure in
-            self.dataStore.deleteSelectedTwitterAccountId({ (error) -> Void in
-                if (error.isError) {
-                    reject(error)
-                    return
-                }
-                
-                fulfill()
-            })
-        }
+    func deleteTwitterAccount() -> Observable<Void> {
+        return dataStore.deleteSelectedTwitterAccountId()
     }
 }

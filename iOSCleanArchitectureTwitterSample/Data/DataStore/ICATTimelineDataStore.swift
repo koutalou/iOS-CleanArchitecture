@@ -7,14 +7,13 @@
 //
 
 import Foundation
+import RxSwift
 import Accounts
 
 class ICATTimelineDataStore: NSObject {
     let request: ICATRestSLRequest = ICATRestSLRequest()
     
-    func getTimelines(_ account: ACAccount ,callback: @escaping (Array<ICATTimelineEntity>?, ICATError) -> Void) {
-        request.getTimeline(account) { (timelines, error) -> Void in
-            callback(timelines, ICATError.noError)
-        }
+    func getTimelines(_ account: ACAccount) -> Observable<[ICATTimelineEntity]> {
+        return request.getTimeline(account)
     }
 }

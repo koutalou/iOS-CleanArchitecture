@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 enum ICATTimelineStatus {
     case none
@@ -16,35 +17,46 @@ enum ICATTimelineStatus {
     case error
 }
 
-class ICATTimelinePresenter: NSObject, ICATTimelineUseCaseOutput {
+class ICATTimelinePresenter {
+    
     weak var viewInput: ICATTimelineViewInput?
     var usecase: ICATTimelineUseCase = ICATTimelineUseCase()
+    
+    private let disposeBag = DisposeBag()
 
     func loadTimelines() {
-        usecase.output = self
         usecase.loadTimelines()
+            .subscribe(
+                onNext: { [weak self] timelines in
+                    self?.loadedTimelinesModel(timelines: timelines)
+                }, onError: { [weak self] error in
+                    self?.errorHandling(error: error)
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
         viewInput?.changedStatus(ICATTimelineStatus.loading)
     }
     
-    // MARK: ICATTimelineUseCaseOutput
-    
-    func notAuthorizedOrNoAccount() {
-        viewInput?.changedStatus(ICATTimelineStatus.notAuthorized)
-    }
-    
-    func loadTimelines(_ timelinesModel: ICATTimelinesModel) {
-        DispatchQueue.main.async { [weak self]() -> Void in
-            self?.viewInput?.setTimelinesModel(timelinesModel)
-            let isNoData: Bool = timelinesModel.timelines.count == 0
+    private func loadedTimelinesModel(timelines: ICATTimelinesModel) {
+        DispatchQueue.main.async { [weak self] in
+            self?.viewInput?.setTimelinesModel(timelines)
+            let isNoData: Bool = timelines.timelines.count == 0
             self?.viewInput?.changedStatus(isNoData ? ICATTimelineStatus.none : ICATTimelineStatus.normal)
         }
     }
     
-    func loadTimelinesError(_ error: ICATError) {
-        if (error == .notAuthorized) {
-            viewInput?.changedStatus(ICATTimelineStatus.notAuthorized)
-        } else {
-            viewInput?.changedStatus(ICATTimelineStatus.error)
+    private func errorHandling(error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            guard let error = error as? ICATError else {
+                self?.viewInput?.changedStatus(ICATTimelineStatus.error)
+                return
+            }
+            switch error {
+            case .notAuthorized:
+                self?.viewInput?.changedStatus(ICATTimelineStatus.notAuthorized)
+            default:
+                self?.viewInput?.changedStatus(ICATTimelineStatus.error)
+            }
         }
     }
 }

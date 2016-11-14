@@ -21,7 +21,7 @@ struct LoginAccountBuilder {
             )
         )
         
-        let presenter = LoginAccountPresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe)
+        let presenter = LoginAccountPresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe, observer: SharedObserver.instance)
         viewController.inject(presenter: presenter)
         wireframe.viewController = viewController
         

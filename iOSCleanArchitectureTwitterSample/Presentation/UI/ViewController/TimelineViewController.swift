@@ -33,12 +33,12 @@ class TimelineViewController: UIViewController {
         
         setupUI()
         presenter?.loadCondition()
+        presenter?.loadTimelines()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter?.loadTimelines()
     }
 }
 

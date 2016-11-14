@@ -32,13 +32,17 @@ class HomeTimelinePresenterImpl: TimelinePresenter {
     weak var viewInput: TimelineViewInput?
     let wireframe: TimelineWireframe
     let useCase: TimelineUseCase
-    
-    private let disposeBag = DisposeBag()
 
-    public required init(useCase: TimelineUseCase, viewInput: TimelineViewInput, wireframe: TimelineWireframe) {
+    fileprivate let observer: SelectPersonObserver
+    fileprivate let disposeBag = DisposeBag()
+
+    public required init(useCase: TimelineUseCase, viewInput: TimelineViewInput, wireframe: TimelineWireframe, observer: SelectPersonObserver) {
         self.useCase = useCase
         self.viewInput = viewInput
         self.wireframe = wireframe
+        self.observer = observer
+        
+        bindObserver()
     }
     
     func loadCondition() {
@@ -69,6 +73,15 @@ class HomeTimelinePresenterImpl: TimelinePresenter {
 
 // MARK: Private
 extension HomeTimelinePresenterImpl {
+    fileprivate func bindObserver() {
+        observer.selectPersonObserver
+            .subscribe { [weak self] in
+                self?.loadTimelines()
+            }
+        .addDisposableTo(disposeBag)
+    }
+
+    
     fileprivate func loadedTimelinesModel(timelines: TimelinesModel) {
         DispatchQueue.main.async { [weak self] in
             self?.viewInput?.setTimelinesModel(timelines)

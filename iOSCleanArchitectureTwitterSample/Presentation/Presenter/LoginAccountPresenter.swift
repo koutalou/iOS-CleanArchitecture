@@ -31,12 +31,14 @@ class LoginAccountPresenterImpl: LoginAccountPresenter {
     var accountsModel: RegisteredAccountsModel?
     var useCase: LoginAccountUseCase
     
+    fileprivate let observer: SelectPersonObserver
     private let disposeBag = DisposeBag()
     
-    public required init(useCase: LoginAccountUseCase, viewInput: LoginAccountViewInput, wireframe: LoginAccountWireframe) {
+    public required init(useCase: LoginAccountUseCase, viewInput: LoginAccountViewInput, wireframe: LoginAccountWireframe, observer: SelectPersonObserver) {
         self.useCase = useCase
         self.viewInput = viewInput
         self.wireframe = wireframe
+        self.observer = observer
     }
     
     func loadAccounts() {
@@ -92,6 +94,8 @@ extension LoginAccountPresenterImpl {
         DispatchQueue.main.async { [weak self] in
             self?.wireframe?.closeView()
         }
+        
+        observer.selectPersonObserver.onNext()
     }
     
     fileprivate func errorHandling(error: Error) {

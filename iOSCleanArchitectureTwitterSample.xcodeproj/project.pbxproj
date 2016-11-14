@@ -36,6 +36,7 @@
 		270E3DAE1C27113C00C9A69E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DAD1C27113C00C9A69E /* AppError.swift */; };
 		270E3DB01C271EB100C9A69E /* RegisteredAccountsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DAF1C271EB100C9A69E /* RegisteredAccountsModel.swift */; };
 		270E3DB21C27291200C9A69E /* LoginAccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3DB11C27291200C9A69E /* LoginAccountViewCell.swift */; };
+		272C79901DDA2A480073AD9D /* SharedObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C798F1DDA2A480073AD9D /* SharedObserver.swift */; };
 		276CCD011DD7E04D0089648C /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CCD001DD7E04D0089648C /* Translator.swift */; };
 		276CCD061DD8456F0089648C /* TimelineWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CCD051DD8456F0089648C /* TimelineWireframe.swift */; };
 		276CCD081DD845C00089648C /* LoginAccountWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276CCD071DD845C00089648C /* LoginAccountWireframe.swift */; };
@@ -102,6 +103,7 @@
 		270E3DAD1C27113C00C9A69E /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppError.swift; path = Util/Error/AppError.swift; sourceTree = "<group>"; };
 		270E3DAF1C271EB100C9A69E /* RegisteredAccountsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisteredAccountsModel.swift; path = Domain/Model/RegisteredAccountsModel.swift; sourceTree = "<group>"; };
 		270E3DB11C27291200C9A69E /* LoginAccountViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAccountViewCell.swift; path = Presentation/UI/Cell/LoginAccountViewCell.swift; sourceTree = "<group>"; };
+		272C798F1DDA2A480073AD9D /* SharedObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedObserver.swift; sourceTree = "<group>"; };
 		276CCD001DD7E04D0089648C /* Translator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Translator.swift; path = Domain/UseCase/Translater/Translator.swift; sourceTree = "<group>"; };
 		276CCD051DD8456F0089648C /* TimelineWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineWireframe.swift; sourceTree = "<group>"; };
 		276CCD071DD845C00089648C /* LoginAccountWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAccountWireframe.swift; sourceTree = "<group>"; };
@@ -360,11 +362,28 @@
 			name = Error;
 			sourceTree = "<group>";
 		};
+		272C798D1DDA2A390073AD9D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				272C798E1DDA2A390073AD9D /* Observer */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		272C798E1DDA2A390073AD9D /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				272C798F1DDA2A480073AD9D /* SharedObserver.swift */,
+			);
+			path = Observer;
+			sourceTree = "<group>";
+		};
 		276CCD021DD844870089648C /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				276CCD031DD845290089648C /* Builder */,
 				276CCD041DD845290089648C /* Wireframe */,
+				272C798D1DDA2A390073AD9D /* Shared */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -708,6 +727,7 @@
 				270E3D9E1C26DB5D00C9A69E /* LoginAccountViewController.swift in Sources */,
 				270E3D631C26D9FC00C9A69E /* AppDelegate.swift in Sources */,
 				276CCD011DD7E04D0089648C /* Translator.swift in Sources */,
+				272C79901DDA2A480073AD9D /* SharedObserver.swift in Sources */,
 				0752CE021C279A6400C75ACB /* SocialAccountRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

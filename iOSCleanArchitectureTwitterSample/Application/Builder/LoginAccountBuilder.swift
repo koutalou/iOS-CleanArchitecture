@@ -9,7 +9,7 @@
 import UIKit
 
 struct LoginAccountBuilder {
-    func build() -> UINavigationController {
+    func build() -> UIViewController {
         let wireframe = LoginAccountWireframeImpl()
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Login") as! LoginAccountViewController
         let useCase = LoginAccountUseCaseImpl(
@@ -22,10 +22,9 @@ struct LoginAccountBuilder {
         )
         
         let presenter = LoginAccountPresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe)
-        viewController.inject(presenter: presenter, wireframe: wireframe)
+        viewController.inject(presenter: presenter)
         wireframe.viewController = viewController
         
-        let navigationController = UINavigationController(rootViewController: viewController)
-        return navigationController
+        return viewController
     }
 }

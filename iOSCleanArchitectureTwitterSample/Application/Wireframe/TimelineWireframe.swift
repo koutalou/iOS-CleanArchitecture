@@ -6,7 +6,7 @@
 //  Copyright © 2016年 koutalou. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol TimelineWireframe: class {
     weak var viewController: TimelineViewController? { get set }
@@ -19,6 +19,7 @@ class TimelineWireframeImpl: TimelineWireframe {
     
     func showLogin() {
         let nextViewController = LoginAccountBuilder().build()
-        viewController?.present(nextViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: nextViewController)
+        viewController?.present(navigationController, animated: true, completion: nil)
     }
 }

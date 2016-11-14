@@ -12,7 +12,8 @@ import Accounts
 
 // MARK: - Interface
 public protocol TimelineRepository {
-    func getTwitterTimelineTask(_ account: ACAccount) -> Observable<[TimelineEntity]>
+    func getTwitterTimelines(_ account: ACAccount) -> Observable<[TimelineEntity]>
+    func getTwitterUserTimelines(_ account: ACAccount, screenName: String) -> Observable<[TimelineEntity]>
 }
 
 // MARK: - Implementation
@@ -23,7 +24,11 @@ class TimelineRepositoryImpl: TimelineRepository {
         self.dataStore = dataStore
     }
 
-    func getTwitterTimelineTask(_ account: ACAccount) -> Observable<[TimelineEntity]> {
-        return dataStore.getTimelines(account)
+    func getTwitterTimelines(_ account: ACAccount) -> Observable<[TimelineEntity]> {
+        return dataStore.getHomeTimelines(account)
+    }
+    
+    func getTwitterUserTimelines(_ account: ACAccount, screenName: String) -> Observable<[TimelineEntity]> {
+        return dataStore.getUserTimelines(account, screenName: screenName)
     }
 }

@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Set RootViewController
-        window?.rootViewController = TimelineBuilder().build()
+        let homeTimelineViewController = HomeTimelineBuilder().build()
+        window?.rootViewController = UINavigationController(rootViewController: homeTimelineViewController)
         
         return true
     }

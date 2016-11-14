@@ -12,7 +12,7 @@ import Accounts
 
 // MARK: - Interface
 public protocol SocialAccountRepository {
-    func getTwitterAccountsTask() -> Observable<[ACAccount]>
+    func getTwitterAccounts() -> Observable<[ACAccount]>
 }
 
 // MARK: - Implementation
@@ -23,7 +23,7 @@ struct SocialAccountRepositoryImpl: SocialAccountRepository {
         self.dataStore = dataStore
     }
     
-    func getTwitterAccountsTask() -> Observable<[ACAccount]> {
+    func getTwitterAccounts() -> Observable<[ACAccount]> {
         return dataStore.getTwitterAccounts()
     }
 }

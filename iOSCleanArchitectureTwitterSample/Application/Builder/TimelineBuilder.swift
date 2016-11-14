@@ -8,9 +8,9 @@
 
 import UIKit
 
-struct TimelineBuilder {
+struct HomeTimelineBuilder {
     func build() -> UIViewController {
-        let wireframe = TimelineWireframeImpl()
+        let wireframe = HomeTimelineWireframeImpl()
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Timeline") as! TimelineViewController
         let useCase = TimelineUseCase(
             loginAccountRepository: LoginAccountRepositoryImpl(
@@ -24,11 +24,40 @@ struct TimelineBuilder {
             )
         )
     
-        let presenter = TimelinePresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe)
+        let presenter = HomeTimelinePresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe)
         viewController.inject(presenter: presenter, wireframe: wireframe)
         wireframe.viewController = viewController
         
-        let navigationController = UINavigationController(rootViewController: viewController)
-        return navigationController
+        return viewController
+    }
+}
+
+struct UserTimelineBuilder {
+    private var screenName: String
+    
+    init(screenName: String) {
+        self.screenName = screenName
+    }
+    
+    func build() -> UIViewController {
+        let wireframe = UserTimelineWireframeImpl()
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Timeline") as! TimelineViewController
+        let useCase = TimelineUseCase(
+            loginAccountRepository: LoginAccountRepositoryImpl(
+                dataStore: LoginAccountDataStoreImpl()
+            ),
+            socialAccountRepository: SocialAccountRepositoryImpl(
+                dataStore: SocialAccountDataStoreImpl()
+            ),
+            timelineRepository: TimelineRepositoryImpl(
+                dataStore: TimelineDataStoreImpl()
+            )
+        )
+        
+        let presenter = UserTimelinePresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe, screenName: screenName)
+        viewController.inject(presenter: presenter, wireframe: wireframe)
+        wireframe.viewController = viewController
+        
+        return viewController
     }
 }

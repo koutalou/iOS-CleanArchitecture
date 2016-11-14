@@ -12,14 +12,19 @@ import Accounts
 
 // MARK: - Interface
 public protocol TimelineDataStore {
-    func getTimelines(_ account: ACAccount) -> Observable<[TimelineEntity]>
+    func getHomeTimelines(_ account: ACAccount) -> Observable<[TimelineEntity]>
+    func getUserTimelines(_ account: ACAccount, screenName: String) -> Observable<[TimelineEntity]>
 }
 
 // MARK: - Implementation
 class TimelineDataStoreImpl: TimelineDataStore {
     let request: RestSLRequest = RestSLRequest()
     
-    func getTimelines(_ account: ACAccount) -> Observable<[TimelineEntity]> {
+    func getHomeTimelines(_ account: ACAccount) -> Observable<[TimelineEntity]> {
         return request.getHomeTimeline(account)
+    }
+    
+    func getUserTimelines(_ account: ACAccount, screenName: String) -> Observable<[TimelineEntity]> {
+        return request.getUserTimeline(account, screenName: screenName)
     }
 }

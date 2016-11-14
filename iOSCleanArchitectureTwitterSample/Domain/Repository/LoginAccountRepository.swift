@@ -12,8 +12,8 @@ import Accounts
 
 // MARK: - Interface
 public protocol LoginAccountRepository {
-    func getSelectedTwitterAccountTask() -> Observable<String?>
-    func updateSelecteTwitterAccountTask(_ account: ACAccount) -> Observable<Void>
+    func getSelectedTwitterAccount() -> Observable<String?>
+    func updateSelecteTwitterAccount(_ account: ACAccount) -> Observable<Void>
     func deleteTwitterAccount() -> Observable<Void>
 }
 
@@ -25,11 +25,11 @@ struct LoginAccountRepositoryImpl: LoginAccountRepository {
         self.dataStore = dataStore
     }
     
-    func getSelectedTwitterAccountTask() -> Observable<String?> {
+    func getSelectedTwitterAccount() -> Observable<String?> {
         return dataStore.getSelectedTwitterAccountId()
     }
     
-    func updateSelecteTwitterAccountTask(_ account: ACAccount) -> Observable<Void> {
+    func updateSelecteTwitterAccount(_ account: ACAccount) -> Observable<Void> {
         return dataStore.updateSelectedTwitterAccountId(account)
 
     }

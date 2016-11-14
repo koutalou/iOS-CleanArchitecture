@@ -9,8 +9,9 @@
 import UIKit
 
 protocol TimelineViewInput: class {
-    func setTimelinesModel(_: TimelinesModel) -> Void
-    func changedStatus(_: TimelineStatus) -> Void
+    func setCondition(isSelectable: Bool)
+    func setTimelinesModel(_: TimelinesModel)
+    func changedStatus(_: TimelineStatus)
 }
 
 class TimelineViewController: UIViewController {
@@ -19,7 +20,7 @@ class TimelineViewController: UIViewController {
     
     private weak var wireframe: TimelineWireframe?
     var presenter: TimelinePresenter?
-    var timelines: Array<TimelineModel>?
+    var timelines: [TimelineModel] = []
     var timelineStatus:TimelineStatus = .loading
     
     public func inject(presenter: TimelinePresenter, wireframe: TimelineWireframe) {
@@ -30,8 +31,8 @@ class TimelineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 70
-        tableView.rowHeight = UITableViewAutomaticDimension
+        setupUI()
+        presenter?.loadCondition()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,8 +42,24 @@ class TimelineViewController: UIViewController {
     }
 }
 
+// MARK: Private and Set Condition
+extension TimelineViewController {
+    func setupUI() {
+        tableView.estimatedRowHeight = 70
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+}
+
 // MARK: TimelineViewInput
 extension TimelineViewController: TimelineViewInput {
+    func setCondition(isSelectable: Bool) {
+        tableView.allowsSelection = isSelectable
+        
+        if !isSelectable {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
     func setTimelinesModel(_ timelinesModel: TimelinesModel) {
         timelines = timelinesModel.timelines
         self.tableView.reloadData()
@@ -62,7 +79,7 @@ extension TimelineViewController {
 }
 
 // MARK: Table view data source
-extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
+extension TimelineViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -71,7 +88,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         if (timelineStatus != .normal) {
             return 1
         }
-        return timelines?.count ?? 0
+        return timelines.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,7 +96,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         case .normal:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineViewCell", for: indexPath) as! TimelineViewCell
             
-            let timeline: TimelineModel = timelines![indexPath.row]
+            let timeline: TimelineModel = timelines[indexPath.row]
             cell.updateCell(timeline)
             
             return cell
@@ -92,5 +109,13 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         case .none:
             return tableView.dequeueReusableCell(withIdentifier: "Nodata", for: indexPath)
         }
+    }
+}
+
+// MARK: UITableView Delegate
+extension TimelineViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let timeline: TimelineModel = timelines[indexPath.row]
+        presenter?.selectCell(timeline: timeline)
     }
 }

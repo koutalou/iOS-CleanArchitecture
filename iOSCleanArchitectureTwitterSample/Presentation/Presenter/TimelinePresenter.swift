@@ -17,16 +17,21 @@ enum TimelineStatus {
     case error
 }
 
+// MARK: - Interface
 protocol TimelinePresenter {
+    func loadCondition()
     func loadTimelines()
+    func selectCell(timeline: TimelineModel)
     func tapPersonButton()
 }
 
-class TimelinePresenterImpl: TimelinePresenter {
+
+// MARK: - Implementation / Home
+class HomeTimelinePresenterImpl: TimelinePresenter {
     
     weak var viewInput: TimelineViewInput?
-    var wireframe: TimelineWireframe?
-    var useCase: TimelineUseCase
+    let wireframe: TimelineWireframe
+    let useCase: TimelineUseCase
     
     private let disposeBag = DisposeBag()
 
@@ -34,6 +39,10 @@ class TimelinePresenterImpl: TimelinePresenter {
         self.useCase = useCase
         self.viewInput = viewInput
         self.wireframe = wireframe
+    }
+    
+    func loadCondition() {
+        viewInput?.setCondition(isSelectable: true)
     }
     
     func loadTimelines() {
@@ -49,13 +58,17 @@ class TimelinePresenterImpl: TimelinePresenter {
         viewInput?.changedStatus(TimelineStatus.loading)
     }
     
+    func selectCell(timeline: TimelineModel) {
+        wireframe.showUserTimeline(screenName: timeline.screenName)
+    }
+    
     func tapPersonButton() {
-        wireframe?.showLogin()
+        wireframe.showLogin()
     }
 }
 
 // MARK: Private
-extension TimelinePresenterImpl {
+extension HomeTimelinePresenterImpl {
     fileprivate func loadedTimelinesModel(timelines: TimelinesModel) {
         DispatchQueue.main.async { [weak self] in
             self?.viewInput?.setTimelinesModel(timelines)
@@ -73,7 +86,77 @@ extension TimelinePresenterImpl {
             switch error {
             case .notAuthorized:
                 self?.viewInput?.changedStatus(TimelineStatus.notAuthorized)
-                self?.wireframe?.showLogin()
+                self?.wireframe.showLogin()
+            default:
+                self?.viewInput?.changedStatus(TimelineStatus.error)
+            }
+        }
+    }
+}
+
+// MARK: - Implementation / User
+class UserTimelinePresenterImpl: TimelinePresenter {
+    
+    weak var viewInput: TimelineViewInput?
+    let wireframe: TimelineWireframe
+    let useCase: TimelineUseCase
+    let screenName: String
+    
+    private let disposeBag = DisposeBag()
+    
+    public required init(useCase: TimelineUseCase, viewInput: TimelineViewInput, wireframe: TimelineWireframe, screenName: String) {
+        self.useCase = useCase
+        self.viewInput = viewInput
+        self.wireframe = wireframe
+        self.screenName = screenName
+    }
+    
+    func loadCondition() {
+        viewInput?.setCondition(isSelectable: false)
+    }
+    
+    func loadTimelines() {
+        useCase.loadTimelines(screenName: screenName)
+            .subscribe(
+                onNext: { [weak self] timelines in
+                    self?.loadedTimelinesModel(timelines: timelines)
+                }, onError: { [weak self] error in
+                    self?.errorHandling(error: error)
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
+        viewInput?.changedStatus(TimelineStatus.loading)
+    }
+    
+    func selectCell(timeline: TimelineModel) {
+        // Nothing to do
+    }
+    
+    func tapPersonButton() {
+        // Nothing to do
+    }
+}
+
+// MARK: Private
+extension UserTimelinePresenterImpl {
+    fileprivate func loadedTimelinesModel(timelines: TimelinesModel) {
+        DispatchQueue.main.async { [weak self] in
+            self?.viewInput?.setTimelinesModel(timelines)
+            let isNoData: Bool = timelines.timelines.count == 0
+            self?.viewInput?.changedStatus(isNoData ? TimelineStatus.none : TimelineStatus.normal)
+        }
+    }
+    
+    fileprivate func errorHandling(error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            guard let error = error as? AppError else {
+                self?.viewInput?.changedStatus(TimelineStatus.error)
+                return
+            }
+            switch error {
+            case .notAuthorized:
+                self?.viewInput?.changedStatus(TimelineStatus.notAuthorized)
+                self?.wireframe.showLogin()
             default:
                 self?.viewInput?.changedStatus(TimelineStatus.error)
             }

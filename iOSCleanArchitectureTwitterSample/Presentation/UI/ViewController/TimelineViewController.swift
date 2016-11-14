@@ -28,6 +28,8 @@ class TimelineViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
     }

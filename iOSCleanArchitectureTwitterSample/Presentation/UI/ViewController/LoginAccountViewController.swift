@@ -18,17 +18,17 @@ class LoginAccountViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerLabel: UILabel!
     
-    var wireframe: LoginAccountWireframe?
     var presenter: LoginAccountPresenter?
     var twitterAccountsModel: RegisteredAccountsModel?
     var accountStatus: LoginAccountStatus = .none
 
-    public func inject(presenter: LoginAccountPresenter, wireframe: LoginAccountWireframe) {
+    public func inject(presenter: LoginAccountPresenter) {
         self.presenter = presenter
-        self.wireframe = wireframe
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         presenter?.loadAccounts()
     }
 }

@@ -14,9 +14,10 @@ struct RegisteredAccountsModel {
 }
 
 struct RegisteredAccountModel {
-    var name: String = ""
-    var identifier: String = ""
-    var id: Int = 0
+    let name: String
+    let identifier: String
+    let id: Int
+    
     var isSelected: Bool = false
     
     init(account: ACAccount, index: Int) {

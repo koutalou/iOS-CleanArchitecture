@@ -13,10 +13,10 @@ struct TimelinesModel {
 }
 
 struct TimelineModel {
-    var name: String = ""
-    var screenName: String = ""
-    var profileUrl: String = ""
-    var tweet: String = ""
+    let name: String
+    let screenName: String
+    let profileUrl: String
+    let tweet: String
     
     init(rowTimelineModel: TimelineEntity) {
         name = rowTimelineModel.user?.name ?? ""

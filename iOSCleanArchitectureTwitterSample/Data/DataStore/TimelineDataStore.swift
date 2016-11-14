@@ -20,6 +20,6 @@ class TimelineDataStoreImpl: TimelineDataStore {
     let request: RestSLRequest = RestSLRequest()
     
     func getTimelines(_ account: ACAccount) -> Observable<[TimelineEntity]> {
-        return request.getTimeline(account)
+        return request.getHomeTimeline(account)
     }
 }

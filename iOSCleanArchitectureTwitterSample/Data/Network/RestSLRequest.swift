@@ -18,7 +18,16 @@ struct Context: MapContext {
 
 class RestSLRequest: NSObject {
 
-    func getTimeline(_ account: ACAccount) -> Observable<[TimelineEntity]> {
+    func getUserTimeline(_ account: ACAccount, screenName: String)  -> Observable<[TimelineEntity]> {
+        let url: String = "https://api.twitter.com/1.1/statuses/user_timeline.json"
+        
+        let request: SLRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, url: URL(string: url), parameters: ["screen_name": screenName])
+        request.account = account
+
+        return fetchTimelines(request)
+    }
+    
+    func getHomeTimeline(_ account: ACAccount) -> Observable<[TimelineEntity]> {
 //        let realm = try! Realm()
 //        let preloadRowTimelineModels: Array<TimelineEntity>? = realm.objects(TimelineEntity) as? Array<TimelineEntity>
 //        if (preloadRowTimelineModels != nil && preloadRowTimelineModels!.count > 0) {
@@ -28,18 +37,21 @@ class RestSLRequest: NSObject {
         let url: String = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         
         let request: SLRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, url: URL(string: url), parameters: nil)
-        
         request.account = account
         
+        return fetchTimelines(request)
+    }
+    
+    func fetchTimelines(_ request: SLRequest) -> Observable<[TimelineEntity]> {
         return Observable.create({ (observer) -> Disposable in
             request.perform(handler: { (responseData, urlResponse, error) in
                 guard
                     let responseData = responseData,
                     let optionalJsonResponse = try? JSONSerialization.jsonObject(with: responseData,
-                                                                           options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<[String: Any]>,
+                                                                                 options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<[String: Any]>,
                     let jsonResponse = optionalJsonResponse else {
-                    observer.onError(AppError.generic)
-                    return
+                        observer.onError(AppError.generic)
+                        return
                 }
                 
                 let context = Context()

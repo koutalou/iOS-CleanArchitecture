@@ -203,7 +203,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="y32-eW-YUw" id="8a9-Bc-Sxe"/>
-                        <segue destination="Iel-B0-eKK" kind="presentation" identifier="LoginAccount" id="MRy-9b-fHu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

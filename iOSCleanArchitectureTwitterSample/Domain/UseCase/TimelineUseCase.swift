@@ -11,13 +11,13 @@ import RxSwift
 import Accounts
 
 // MARK: - Interface
-protocol TimelineUseCaseOutput {
+protocol TimelineUseCase {
     func loadTimelines() -> Observable<TimelinesModel>
     func loadTimelines(screenName: String) -> Observable<TimelinesModel>
 }
 
 // MARK: - Implementation
-struct TimelineUseCase: TimelineUseCaseOutput {
+struct TimelineUseCaseImpl: TimelineUseCase {
     private let loginAccountRepository: LoginAccountRepository
     private let socialAccountRepository: SocialAccountRepository
     private let timelineRepository: TimelineRepository

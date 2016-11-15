@@ -12,7 +12,7 @@ struct HomeTimelineBuilder {
     func build() -> UIViewController {
         let wireframe = HomeTimelineWireframeImpl()
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Timeline") as! TimelineViewController
-        let useCase = TimelineUseCase(
+        let useCase = TimelineUseCaseImpl(
             loginAccountRepository: LoginAccountRepositoryImpl(
                 dataStore: LoginAccountDataStoreImpl()
             ),
@@ -42,7 +42,7 @@ struct UserTimelineBuilder {
     func build() -> UIViewController {
         let wireframe = UserTimelineWireframeImpl()
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Timeline") as! TimelineViewController
-        let useCase = TimelineUseCase(
+        let useCase = TimelineUseCaseImpl(
             loginAccountRepository: LoginAccountRepositoryImpl(
                 dataStore: LoginAccountDataStoreImpl()
             ),

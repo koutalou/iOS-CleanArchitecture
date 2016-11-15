@@ -75,7 +75,7 @@ class HomeTimelinePresenterImpl: TimelinePresenter {
 extension HomeTimelinePresenterImpl {
     fileprivate func bindObserver() {
         observer.selectPersonObserver
-            .subscribe { [weak self] in
+            .subscribe { [weak self] _ in
                 self?.loadTimelines()
             }
         .addDisposableTo(disposeBag)

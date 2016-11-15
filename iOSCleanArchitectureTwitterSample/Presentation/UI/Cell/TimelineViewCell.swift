@@ -17,7 +17,7 @@ class TimelineViewCell: UITableViewCell {
     @IBOutlet weak var tweet: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 
-    func updateCell(_ timelineModel: TimelineModel) {
+    func updateCell(_ timelineModel: TimelineViewModel) {
         self.name.text = "@" + timelineModel.screenName
         self.displayName.text = timelineModel.name
         self.tweet.text = timelineModel.tweet

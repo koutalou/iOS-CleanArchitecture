@@ -17,6 +17,10 @@
 		0752CE0F1C283EAB00C75ACB /* TimelineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE0E1C283EAB00C75ACB /* TimelineModel.swift */; };
 		0752CE111C28452B00C75ACB /* TimelineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE101C28452B00C75ACB /* TimelineViewCell.swift */; };
 		0752CE171C28EF9E00C75ACB /* RestSLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752CE161C28EF9E00C75ACB /* RestSLRequest.swift */; };
+		078625481DDB32290005855B /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078625471DDB32290005855B /* TimelineViewModel.swift */; };
+		0786254C1DDB398A0005855B /* TimelineUserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0786254B1DDB398A0005855B /* TimelineUserHeaderView.swift */; };
+		0786254E1DDB39950005855B /* TimelineUserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0786254D1DDB39950005855B /* TimelineUserHeaderView.xib */; };
+		078625511DDB3AD60005855B /* Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078625501DDB3AD60005855B /* Nib.swift */; };
 		270E3D631C26D9FC00C9A69E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270E3D621C26D9FC00C9A69E /* AppDelegate.swift */; };
 		270E3D681C26D9FC00C9A69E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270E3D661C26D9FC00C9A69E /* Main.storyboard */; };
 		270E3D6A1C26D9FC00C9A69E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 270E3D691C26D9FC00C9A69E /* Assets.xcassets */; };
@@ -75,6 +79,10 @@
 		0752CE0E1C283EAB00C75ACB /* TimelineModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineModel.swift; path = Domain/Model/TimelineModel.swift; sourceTree = "<group>"; };
 		0752CE101C28452B00C75ACB /* TimelineViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineViewCell.swift; path = Presentation/UI/Cell/TimelineViewCell.swift; sourceTree = "<group>"; };
 		0752CE161C28EF9E00C75ACB /* RestSLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestSLRequest.swift; path = Data/Network/RestSLRequest.swift; sourceTree = "<group>"; };
+		078625471DDB32290005855B /* TimelineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
+		0786254B1DDB398A0005855B /* TimelineUserHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineUserHeaderView.swift; sourceTree = "<group>"; };
+		0786254D1DDB39950005855B /* TimelineUserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineUserHeaderView.xib; sourceTree = "<group>"; };
+		078625501DDB3AD60005855B /* Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nib.swift; sourceTree = "<group>"; };
 		0D14D064FA9E031D81DA7399 /* Pods-iOSCleanArchitectureTwitterSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSCleanArchitectureTwitterSampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSCleanArchitectureTwitterSampleTests/Pods-iOSCleanArchitectureTwitterSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0D3E91A768FBEEE702FF5F6C /* Pods_iOSCleanArchitectureTwitterSampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSCleanArchitectureTwitterSampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21CB8D56598FD8BF8E22F832 /* Pods_iOSCleanArchitectureTwitterSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSCleanArchitectureTwitterSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +187,8 @@
 		0752CDF61C2789A200C75ACB /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				078625461DDB321B0005855B /* ViewModel */,
+				078625491DDB39500005855B /* View */,
 				0752CE131C28E8BE00C75ACB /* Cell */,
 				0752CE141C28E8C800C75ACB /* ViewController */,
 			);
@@ -252,6 +262,7 @@
 		0752CE121C28636E00C75ACB /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				0786254F1DDB3AB80005855B /* Shared */,
 				270E3DAC1C27112C00C9A69E /* Error */,
 			);
 			name = Util;
@@ -283,6 +294,34 @@
 				276CCD001DD7E04D0089648C /* Translator.swift */,
 			);
 			name = Translater;
+			sourceTree = "<group>";
+		};
+		078625461DDB321B0005855B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				078625471DDB32290005855B /* TimelineViewModel.swift */,
+			);
+			name = ViewModel;
+			path = Presentation/UI/ViewModel;
+			sourceTree = "<group>";
+		};
+		078625491DDB39500005855B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0786254B1DDB398A0005855B /* TimelineUserHeaderView.swift */,
+				0786254D1DDB39950005855B /* TimelineUserHeaderView.xib */,
+			);
+			name = View;
+			path = Presentation/UI/View;
+			sourceTree = "<group>";
+		};
+		0786254F1DDB3AB80005855B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				078625501DDB3AD60005855B /* Nib.swift */,
+			);
+			name = Shared;
+			path = Util/Shared;
 			sourceTree = "<group>";
 		};
 		270E3D561C26D9FC00C9A69E = {
@@ -537,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				270E3D6D1C26D9FC00C9A69E /* LaunchScreen.storyboard in Resources */,
+				0786254E1DDB39950005855B /* TimelineUserHeaderView.xib in Resources */,
 				270E3D6A1C26D9FC00C9A69E /* Assets.xcassets in Resources */,
 				270E3D681C26D9FC00C9A69E /* Main.storyboard in Resources */,
 			);
@@ -719,7 +759,9 @@
 				270E3D971C26DAE000C9A69E /* TimelineRepository.swift in Sources */,
 				270E3DB21C27291200C9A69E /* LoginAccountViewCell.swift in Sources */,
 				0752CE0D1C283E0E00C75ACB /* TimelineTranslater.swift in Sources */,
+				078625481DDB32290005855B /* TimelineViewModel.swift in Sources */,
 				270E3DA41C26DB7E00C9A69E /* SocialAccountDataStore.swift in Sources */,
+				0786254C1DDB398A0005855B /* TimelineUserHeaderView.swift in Sources */,
 				0752CE111C28452B00C75ACB /* TimelineViewCell.swift in Sources */,
 				276CCD0A1DD863C70089648C /* LoginAccountBuilder.swift in Sources */,
 				270E3DAE1C27113C00C9A69E /* AppError.swift in Sources */,
@@ -727,6 +769,7 @@
 				270E3D9E1C26DB5D00C9A69E /* LoginAccountViewController.swift in Sources */,
 				270E3D631C26D9FC00C9A69E /* AppDelegate.swift in Sources */,
 				276CCD011DD7E04D0089648C /* Translator.swift in Sources */,
+				078625511DDB3AD60005855B /* Nib.swift in Sources */,
 				272C79901DDA2A480073AD9D /* SharedObserver.swift in Sources */,
 				0752CE021C279A6400C75ACB /* SocialAccountRepository.swift in Sources */,
 			);

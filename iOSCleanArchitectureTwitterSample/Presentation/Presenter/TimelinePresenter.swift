@@ -21,7 +21,7 @@ enum TimelineStatus {
 protocol TimelinePresenter {
     func loadCondition()
     func loadTimelines()
-    func selectCell(timeline: TimelineModel)
+    func selectCell(timeline: TimelineViewModel)
     func tapPersonButton()
 }
 
@@ -62,7 +62,7 @@ class HomeTimelinePresenterImpl: TimelinePresenter {
         viewInput?.changedStatus(TimelineStatus.loading)
     }
     
-    func selectCell(timeline: TimelineModel) {
+    func selectCell(timeline: TimelineViewModel) {
         wireframe.showUserTimeline(screenName: timeline.screenName)
     }
     
@@ -141,7 +141,7 @@ class UserTimelinePresenterImpl: TimelinePresenter {
         viewInput?.changedStatus(TimelineStatus.loading)
     }
     
-    func selectCell(timeline: TimelineModel) {
+    func selectCell(timeline: TimelineViewModel) {
         // Nothing to do
     }
     
@@ -154,6 +154,9 @@ class UserTimelinePresenterImpl: TimelinePresenter {
 extension UserTimelinePresenterImpl {
     fileprivate func loadedTimelinesModel(timelines: TimelinesModel) {
         DispatchQueue.main.async { [weak self] in
+            if let firstTimeline = timelines.timelines.first {
+                self?.viewInput?.setUserModel(firstTimeline)
+            }
             self?.viewInput?.setTimelinesModel(timelines)
             let isNoData: Bool = timelines.timelines.count == 0
             self?.viewInput?.changedStatus(isNoData ? TimelineStatus.none : TimelineStatus.normal)

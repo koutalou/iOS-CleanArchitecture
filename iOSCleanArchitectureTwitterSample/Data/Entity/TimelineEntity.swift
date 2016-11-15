@@ -28,7 +28,9 @@ public class TimelineEntity: Object,Mappable {
 
 public class UserEntity: Object, Mappable {
     var screenName = ""
-    var prifileUrl = ""
+    var userDescription = ""
+    var profileUrl = ""
+    var profileBackgroundUrl = ""
     var name = ""
     
     required convenience public init?(map: Map) {
@@ -37,7 +39,9 @@ public class UserEntity: Object, Mappable {
     
     public func mapping(map: Map) {
         screenName <- map["screen_name"]
-        prifileUrl <- map["profile_image_url_https"]
+        userDescription <- map["description"]
+        profileUrl <- map["profile_image_url_https"]
+        profileBackgroundUrl <- map["profile_background_image_url_https"]
         name <- map["name"]
     }
 }

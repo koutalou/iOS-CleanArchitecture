@@ -11,6 +11,7 @@ import UIKit
 protocol TimelineViewInput: class {
     func setCondition(isSelectable: Bool)
     func setTimelinesModel(_: TimelinesModel)
+    func setUserModel(_: UserViewModel)
     func changedStatus(_: TimelineStatus)
 }
 
@@ -20,8 +21,11 @@ class TimelineViewController: UIViewController {
     
     private weak var wireframe: TimelineWireframe?
     var presenter: TimelinePresenter?
-    var timelines: [TimelineModel] = []
+    var timelines: [TimelineViewModel] = []
     var timelineStatus:TimelineStatus = .loading
+    
+    fileprivate let headerUserViewNib = Nib<TimelineUserHeaderView>()
+    fileprivate var headerUserView: TimelineUserHeaderView!
     
     public func inject(presenter: TimelinePresenter, wireframe: TimelineWireframe) {
         self.presenter = presenter
@@ -39,6 +43,9 @@ class TimelineViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+        }
     }
 }
 
@@ -47,6 +54,8 @@ extension TimelineViewController {
     func setupUI() {
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        headerUserView = headerUserViewNib.view()
     }
 }
 
@@ -58,6 +67,11 @@ extension TimelineViewController: TimelineViewInput {
         if !isSelectable {
             navigationItem.rightBarButtonItem = nil
         }
+    }
+    
+    func setUserModel(_ userModel: UserViewModel) {
+        headerUserView.updateCell(userModel)
+        tableView.tableHeaderView = headerUserView
     }
     
     func setTimelinesModel(_ timelinesModel: TimelinesModel) {
@@ -96,7 +110,7 @@ extension TimelineViewController: UITableViewDataSource {
         case .normal:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineViewCell", for: indexPath) as! TimelineViewCell
             
-            let timeline: TimelineModel = timelines[indexPath.row]
+            let timeline: TimelineViewModel = timelines[indexPath.row]
             cell.updateCell(timeline)
             
             return cell
@@ -115,7 +129,7 @@ extension TimelineViewController: UITableViewDataSource {
 // MARK: UITableView Delegate
 extension TimelineViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let timeline: TimelineModel = timelines[indexPath.row]
+        let timeline: TimelineViewModel = timelines[indexPath.row]
         presenter?.selectCell(timeline: timeline)
     }
 }

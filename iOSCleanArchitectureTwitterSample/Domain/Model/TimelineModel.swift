@@ -12,16 +12,20 @@ struct TimelinesModel {
     var timelines: [TimelineModel] = []
 }
 
-struct TimelineModel {
+struct TimelineModel: TimelineViewModel, UserViewModel {
     let name: String
     let screenName: String
     let profileUrl: String
+    let profileBackgroundUrl: String
     let tweet: String
+    let userDescription: String
     
     init(rowTimelineModel: TimelineEntity) {
         name = rowTimelineModel.user?.name ?? ""
         screenName = rowTimelineModel.user?.screenName ?? ""
-        profileUrl = rowTimelineModel.user?.prifileUrl ?? ""
+        profileUrl = rowTimelineModel.user?.profileUrl ?? ""
+        profileBackgroundUrl = rowTimelineModel.user?.profileBackgroundUrl ?? ""
         tweet = rowTimelineModel.text
+        userDescription = rowTimelineModel.user?.userDescription ?? ""
     }
 }

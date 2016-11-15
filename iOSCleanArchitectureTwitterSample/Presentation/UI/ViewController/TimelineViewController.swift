@@ -70,7 +70,7 @@ extension TimelineViewController: TimelineViewInput {
     }
     
     func setUserModel(_ userModel: UserViewModel) {
-        headerUserView.updateCell(userModel)
+        headerUserView.updateView(userModel)
         tableView.tableHeaderView = headerUserView
     }
     

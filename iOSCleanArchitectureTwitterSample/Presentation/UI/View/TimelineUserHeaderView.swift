@@ -17,7 +17,7 @@ class TimelineUserHeaderView: UIView {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var backgroudImageView: UIImageView!
     
-    func updateCell(_ timelineModel: UserViewModel) {
+    func updateView(_ timelineModel: UserViewModel) {
         self.name.text = "@" + timelineModel.screenName
         self.displayName.text = timelineModel.name
         self.profileImageView.kf.setImage(with: URL(string: timelineModel.profileUrl))

@@ -110,7 +110,7 @@
                                             <outlet property="tweet" destination="qFa-AC-xaV" id="VE9-mA-iWl"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Loading" rowHeight="120" id="RdZ-92-CTH">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Loading" rowHeight="120" id="RdZ-92-CTH">
                                         <rect key="frame" x="0.0" y="108" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RdZ-92-CTH" id="9oo-oJ-5dr">
@@ -131,7 +131,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Nodata" rowHeight="120" id="5fu-z4-IBG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Nodata" rowHeight="120" id="5fu-z4-IBG">
                                         <rect key="frame" x="0.0" y="228" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5fu-z4-IBG" id="wD6-GW-bab">
@@ -152,7 +152,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Error" rowHeight="120" id="sOe-Cd-Y15">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Error" rowHeight="120" id="sOe-Cd-Y15">
                                         <rect key="frame" x="0.0" y="348" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sOe-Cd-Y15" id="xNS-fK-BXA">
@@ -170,6 +170,27 @@
                                                 <constraint firstAttribute="bottom" secondItem="0ND-yL-QWV" secondAttribute="bottom" constant="50" id="FFM-uQ-We7"/>
                                                 <constraint firstItem="0ND-yL-QWV" firstAttribute="centerX" secondItem="xNS-fK-BXA" secondAttribute="centerX" id="J9i-Ae-4K4"/>
                                                 <constraint firstItem="0ND-yL-QWV" firstAttribute="top" secondItem="xNS-fK-BXA" secondAttribute="top" constant="50" id="fho-NX-dyu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotAuthorized" rowHeight="120" id="QgH-w1-hRW">
+                                        <rect key="frame" x="0.0" y="468" width="375" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QgH-w1-hRW" id="6dw-Wn-iqr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not select authorized user yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WxQ-Pp-HIu">
+                                                    <rect key="frame" x="72" y="50" width="231" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="WxQ-Pp-HIu" secondAttribute="bottom" constant="50" id="BLu-MW-otY"/>
+                                                <constraint firstItem="WxQ-Pp-HIu" firstAttribute="top" secondItem="6dw-Wn-iqr" secondAttribute="top" constant="50" id="Vwf-xb-Q86"/>
+                                                <constraint firstItem="WxQ-Pp-HIu" firstAttribute="centerX" secondItem="6dw-Wn-iqr" secondAttribute="centerX" id="veN-we-650"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

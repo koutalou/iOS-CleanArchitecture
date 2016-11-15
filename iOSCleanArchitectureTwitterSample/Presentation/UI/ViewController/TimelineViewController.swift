@@ -115,7 +115,7 @@ extension TimelineViewController: UITableViewDataSource {
             
             return cell
         case .notAuthorized:
-            return tableView.dequeueReusableCell(withIdentifier: "Nodata", for: indexPath)
+            return tableView.dequeueReusableCell(withIdentifier: "NotAuthorized", for: indexPath)
         case .loading:
             return tableView.dequeueReusableCell(withIdentifier: "Loading", for: indexPath)
         case .error:
@@ -129,7 +129,12 @@ extension TimelineViewController: UITableViewDataSource {
 // MARK: UITableView Delegate
 extension TimelineViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let timeline: TimelineViewModel = timelines[indexPath.row]
-        presenter?.selectCell(timeline: timeline)
+        switch timelineStatus {
+        case .normal:
+            let timeline: TimelineViewModel = timelines[indexPath.row]
+            presenter?.selectCell(timeline: timeline)
+        default:
+            return
+        }
     }
 }

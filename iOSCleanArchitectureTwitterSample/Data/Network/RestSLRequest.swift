@@ -16,7 +16,7 @@ import RealmSwift
 struct Context: MapContext {
 }
 
-class RestSLRequest: NSObject {
+struct RestSLRequest {
 
     func getUserTimeline(_ account: ACAccount, screenName: String)  -> Observable<[TimelineEntity]> {
         let url: String = "https://api.twitter.com/1.1/statuses/user_timeline.json"
@@ -56,7 +56,10 @@ class RestSLRequest: NSObject {
                 
                 let context = Context()
                 let mapper = Mapper<TimelineEntity>(context: context)
-                let rowTimelines = Array(mapper.mapSet(JSONArray: jsonResponse))
+                guard let rowTimelines = mapper.mapArray(JSONArray: jsonResponse) else {
+                    observer.onError(AppError.generic)
+                    return
+                }
                 
                 observer.onNext(rowTimelines)
                 observer.onCompleted()

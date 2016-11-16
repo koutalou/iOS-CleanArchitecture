@@ -10,34 +10,32 @@ import Foundation
 import ObjectMapper
 import RealmSwift
 
-public class TimelineEntity: Object,Mappable {
+public struct TimelineEntity: Mappable {
     var text = ""
     var createdAt = ""
-    dynamic var user: UserEntity? = nil
+    var user: UserEntity? = nil
     
-    required convenience public init?(map: Map) {
-        self.init()
+    public init?(map: Map) {
     }
     
-    public func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         text <- map["text"]
         createdAt <- map["created_at"]
         user <- map["user"]
     }
 }
 
-public class UserEntity: Object, Mappable {
+public struct UserEntity: Mappable {
     var screenName = ""
     var userDescription = ""
     var profileUrl = ""
     var profileBackgroundUrl = ""
     var name = ""
     
-    required convenience public init?(map: Map) {
-        self.init()
+    public init?(map: Map) {
     }
     
-    public func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         screenName <- map["screen_name"]
         userDescription <- map["description"]
         profileUrl <- map["profile_image_url_https"]

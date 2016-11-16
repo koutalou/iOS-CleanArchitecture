@@ -17,7 +17,7 @@ public protocol TimelineDataStore {
 }
 
 // MARK: - Implementation
-class TimelineDataStoreImpl: TimelineDataStore {
+struct TimelineDataStoreImpl: TimelineDataStore {
     let request: RestSLRequest = RestSLRequest()
     
     func getHomeTimelines(_ account: ACAccount) -> Observable<[TimelineEntity]> {

@@ -17,7 +17,7 @@ public protocol TimelineRepository {
 }
 
 // MARK: - Implementation
-class TimelineRepositoryImpl: TimelineRepository {
+struct TimelineRepositoryImpl: TimelineRepository {
     private let dataStore: TimelineDataStore
 
     public init(dataStore: TimelineDataStore) {

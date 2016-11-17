@@ -1,26 +1,30 @@
 PODS:
-  - ObjectMapper (1.0.1)
-  - Realm (0.97.0):
-    - Realm/Headers (= 0.97.0)
-  - Realm/Headers (0.97.0)
-  - RealmSwift (0.97.0):
-    - Realm (= 0.97.0)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
-  - SwiftTask (4.1.0)
+  - Kingfisher (3.2.0)
+  - ObjectMapper (2.2.1)
+  - Realm (2.0.3):
+    - Realm/Headers (= 2.0.3)
+  - Realm/Headers (2.0.3)
+  - RealmSwift (2.0.3):
+    - Realm (= 2.0.3)
+  - RxCocoa (3.0.1):
+    - RxSwift (~> 3.0)
+  - RxSwift (3.0.1)
 
 DEPENDENCIES:
+  - Kingfisher
   - ObjectMapper
   - RealmSwift
-  - SDWebImage
-  - SwiftTask
+  - RxCocoa
+  - RxSwift
 
 SPEC CHECKSUMS:
-  ObjectMapper: 98524bac0dca46c6b3d5ee02cd410fc700ec6ce2
-  Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
-  RealmSwift: d014810dec75c9a3f1a33926d2dabfed855c582c
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  SwiftTask: 228b9da0bda184493ce836c39acb56a3ff6eca5b
+  Kingfisher: 50407d1d5dbc34965009d425a286342ff36a84ea
+  ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
+  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
+  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
+  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: df6970e6d7b50ef33d94fa901e87f3a8f5e67c25
+
+COCOAPODS: 1.1.1

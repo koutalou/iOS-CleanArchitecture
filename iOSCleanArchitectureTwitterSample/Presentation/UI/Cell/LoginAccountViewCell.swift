@@ -1,5 +1,5 @@
 //
-//  ICATLoginAccountViewCell.swift
+//  LoginAccountViewCell.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/21.
@@ -8,20 +8,20 @@
 
 import UIKit
 
-class ICATLoginAccountViewCell: UITableViewCell {
+class LoginAccountViewCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
     
-    func updateCell(accountModel: ICATRegisteredAccountModel) {
+    func updateCell(_ accountModel: RegisteredAccountModel) {
         self.name.text = "@" + accountModel.name
         self.isSelected(accountModel.isSelected)
     }
     
-    func isSelected(isSelected: Bool) {
+    func isSelected(_ isSelected: Bool) {
         if (isSelected) {
             self.backgroundColor = UIColor(red: 198/255.0, green: 227/255.0, blue: 219/255.0, alpha: 1)
         } else {
-            self.backgroundColor = UIColor.whiteColor()
+            self.backgroundColor = UIColor.white
         }
     }
 }

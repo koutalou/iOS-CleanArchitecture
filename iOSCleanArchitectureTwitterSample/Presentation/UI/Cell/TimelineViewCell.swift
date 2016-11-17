@@ -1,5 +1,5 @@
 //
-//  ICATTimelineViewCell.swift
+//  TimelineViewCell.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by Kodama.Kotaro on 2015/12/21.
@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import SDWebImage
+import Kingfisher
 
-class ICATTimelineViewCell: UITableViewCell {
+class TimelineViewCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var displayName: UILabel!
@@ -17,18 +17,18 @@ class ICATTimelineViewCell: UITableViewCell {
     @IBOutlet weak var tweet: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 
-    func updateCell(timelineModel: ICATTimelineModel) {
+    func updateCell(_ timelineModel: TimelineViewModel) {
         self.name.text = "@" + timelineModel.screenName
         self.displayName.text = timelineModel.name
         self.tweet.text = timelineModel.tweet
-        self.profileImageView.sd_setImageWithURL(NSURL(string: timelineModel.profileUrl))
+        self.profileImageView.kf.setImage(with: URL(string: timelineModel.profileUrl))
     }
     
-    func isSelected(isSelected: Bool) {
+    func isSelected(_ isSelected: Bool) {
         if (isSelected) {
             self.backgroundColor = UIColor(red: 198/255.0, green: 227/255.0, blue: 219/255.0, alpha: 1)
         } else {
-            self.backgroundColor = UIColor.whiteColor()
+            self.backgroundColor = UIColor.white
         }
     }
 }

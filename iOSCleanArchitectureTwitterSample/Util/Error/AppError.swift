@@ -1,5 +1,5 @@
 //
-//  ICATError.swift
+//  AppError.swift
 //  iOSCleanArchitectureTwitterSample
 //
 //  Created by koutalou on 2015/12/21.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum ICATError {
-    case NoError
-    case Network
-    case NotAuthorized
-    case Generic
+enum AppError: Error {
+    case noError
+    case network
+    case notAuthorized
+    case generic
     
     var isError: Bool {
-        return self != .NoError
+        return self != .noError
     }
 }

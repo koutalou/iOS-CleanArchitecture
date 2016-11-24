@@ -76,7 +76,9 @@ extension HomeTimelinePresenterImpl {
     fileprivate func bindObserver() {
         observer.selectPersonObserver
             .subscribe { [weak self] _ in
-                self?.loadTimelines()
+                DispatchQueue.main.async {
+                    self?.loadTimelines()
+                }
             }
         .addDisposableTo(disposeBag)
     }

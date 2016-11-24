@@ -25,7 +25,7 @@ struct HomeTimelineBuilder {
         )
     
         let presenter = HomeTimelinePresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe, observer: SharedObserver.instance)
-        viewController.inject(presenter: presenter, wireframe: wireframe)
+        viewController.inject(presenter: presenter)
         wireframe.viewController = viewController
         
         return viewController
@@ -55,7 +55,7 @@ struct UserTimelineBuilder {
         )
         
         let presenter = UserTimelinePresenterImpl(useCase: useCase, viewInput: viewController, wireframe: wireframe, screenName: screenName)
-        viewController.inject(presenter: presenter, wireframe: wireframe)
+        viewController.inject(presenter: presenter)
         wireframe.viewController = viewController
         
         return viewController

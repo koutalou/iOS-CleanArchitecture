@@ -19,7 +19,6 @@ class TimelineViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private weak var wireframe: TimelineWireframe?
     var presenter: TimelinePresenter?
     var timelines: [TimelineViewModel] = []
     var timelineStatus:TimelineStatus = .loading
@@ -27,9 +26,8 @@ class TimelineViewController: UIViewController {
     fileprivate let headerUserViewNib = Nib<TimelineUserHeaderView>()
     fileprivate var headerUserView: TimelineUserHeaderView!
     
-    public func inject(presenter: TimelinePresenter, wireframe: TimelineWireframe) {
+    public func inject(presenter: TimelinePresenter) {
         self.presenter = presenter
-        self.wireframe = wireframe
     }
 
     override func viewDidLoad() {
